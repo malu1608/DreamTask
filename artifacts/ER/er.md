@@ -3,15 +3,6 @@
 
 The purpose of this project is to develop a web application called DreamTask, which is a project management system that will be developed by a small software company, mainly to  define and organize all possible tasks or goals to be achieved individually or as a team.
 
-### Team
-
-* Alberto Serra up202103627, up202103627@g.uporto.pt
-* Luísa Salvador up202006471, up202006471@g.uporto.pt
-* Luís Paiva up202006094, up202006094@g.uporto.pt
-* Rafael Alves up202004476, up202004476@g.uporto.pt
-
-***
-G02T04, 2022/2023
 
 ### A1: Project Management
 
@@ -273,3 +264,13 @@ Wireframe is a prototype used in interface design to suggest the structure of a 
 4. Task Board
 5. Project Info
 6. All Tasks
+
+### Team
+
+* Alberto Serra up202103627, up202103627@g.uporto.pt
+* Luísa Salvador up202006471, up202006471@g.uporto.pt
+* Luís Paiva up202006094, up202006094@g.uporto.pt
+* Rafael Alves up202004476, up202004476@g.uporto.pt
+
+***
+G02T04, 2022/2023
