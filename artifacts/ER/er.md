@@ -4,7 +4,7 @@
 The purpose of this project is to develop a web application called DreamTask, which is a project management system that will be developed by a small software company, mainly to  define and organize all possible tasks or goals to be achieved individually or as a team.
 
 
-### A1: Project Management
+## A1: Project Management
 
 This App will be developed by a small team of software engineers, and will allow any type of user, whether corporate related like startups, consultants, small companies, large businesses, and many others, to have control of all their workflow. Any team of employees would benefit the most from this application since it will allow them to achieve professional success by controlling and planning their activities and by helping to build the right line-up in order to assemble the perfect project.
 In terms of operation, before the creation of a project, there has to be a workspace associated with that company, with all types of registered users: board members, administrators and people that might be relevant for the development of the project (observers and guests for instance). Each project has at least a  team and task lists that are assigned to those members,  tracking the one that defined that task as well as the one who completed it. Tasks inside the lists can be directed to groups and have upcoming deadlines and priority levels. Each team has a team coordinator. A search engine dedicated to finding the respective teams/tasks associated with each individual.
@@ -17,15 +17,15 @@ The commenting permission (deleting, adding and editing comments), on which the 
  
 In terms of the design and structure of the application, the aim is to maintain an easy-to-use and transparent navigation system, accompanied by an appealing visual appearance to new visitors or potential customers of our product.
 
-### A2: Actors and User stories
+## A2: Actors and User stories
 
 This artifact contains the specification of the actors and their user stories, serving as agile documentation of the project’s requirements.
 
-#### 1. Actors
+### 1. Actors
 
 An Actor specifies a role played by a user or any other system that interacts with the subject. For the DreamTask the actors are represented in Figure 1 and described in Table 1.
 
-![image](actors.png "Figure 1: Actors")
+![Alt text](https://github.com/Alberto-Serra/LBAW-images/blob/15f9536dde2520c62800dc209843c06dcd519d84/actors.png?raw=true "Figure 1: Actors")
 
 Figure 1: Actors
 
@@ -41,10 +41,7 @@ Figure 1: Actors
 
 Table 1:  DreamTask actors descriptions
 
-<br>
-<br>
-
-#### 2. User Stories
+### 2. User Stories
 
 A user story is a short, simple description of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.
  
@@ -61,8 +58,6 @@ On the tables below are the user stories that define the functions of our applic
 
 Table 2: Users user stories
 
-<br>
-
 
 **Unauthenticated User**
 
@@ -74,8 +69,6 @@ Table 2: Users user stories
 | US08       | Sign-Up using external API | low      | As an Unauthenticated User, I want to register into the system using an external account, so that I can authenticate myself into the system. |
 
 Table 3: Unauthenticated users user stories
-
-<br>
 
 **Authenticated User**
 
@@ -91,8 +84,6 @@ Table 3: Unauthenticated users user stories
 
 Table 4: Authenticated users user stories
 
-<br>
-
 **Administrator**
 
 | Identifier | Name                  | Priority | Description                                                                                                           |
@@ -104,8 +95,6 @@ Table 4: Authenticated users user stories
 | US19       | Remove FAQ       | low     | As an Admin, I want to remove the most common questions so the users don’t need to ask me the same things.         |
 
 Table 5: Administrator's user stories
-
-<br>
 
 **Team Member**
 
@@ -129,8 +118,6 @@ Table 5: Administrator's user stories
 
 Table 6: Team Member's user stories
 
-<br>
-
 **Team Coordinator**
 
 | Identifier | Name                  | Priority | Description                                                                                                           |
@@ -143,9 +130,7 @@ Table 6: Team Member's user stories
 
 Table 7: Team Coordinator's user stories
 
-<br>
-
-#### 3. Supplementary requirements
+### 3. Supplementary requirements
 
 The following section will present the chosen business rules, technical requirements and non-functional requirements on the project.
 
@@ -188,7 +173,7 @@ A restriction on the design puts barriers for the user
 
 Table 10: Supplementary requirement´s Restrictions
 
-### A3: Information Architecture
+## A3: Information Architecture
 
 This artifact compacts the system information we are developing. The main goals are:
 
@@ -204,68 +189,86 @@ This artifact includes two elements:
 
 2.A set of wireframes, defining the functionality and the content for each page. Wireframes are designed for at least two of the most important pages.
 
-#### 1. Sitemap
+<br>
+
+### 1. Sitemap
 
 A sitemap is a visual representation of the relationship between the different pages of a website that shows how all the information fits together.
 
-The DreamTask system is organized in seven main areas, the static pages that provide general information about the system (Static Pages), the individual unauthenticated user page (Unauthenticated User Pages), the pages with administration features (Admin Pages), the workspace page (Project Pages), the authenticated user pages (Authenticated User), the responsible for the team members' project pages (Team Coordinator Pages) and the team members' pages (Team Member Pages) .
+The DreamTask system is organized in seven main areas, the static pages that provide general information about the system (Static Pages), the individual unauthenticated user page (Unauthenticated User Pages), the pages with administration features (Admin Pages), the workspace page (Project Pages), the authenticated user pages (Authenticated User), the responsible for the team members' project pages (Team Coordinator Pages) and the team members' pages (Team Member Pages).
 
-![image](SITEMAP2.drawio.png "Sitemap")
+
+![Alt text](https://github.com/Alberto-Serra/LBAW-images/blob/15f9536dde2520c62800dc209843c06dcd519d84/SITEMAP2.drawio.png?raw=true "Figure 1: Sitemap")
 
 <div align="center">Figure 1: DreamTask Sitemap</div>
 
-#### 2. Wireframes
+<br>
+
+### 2. Wireframes
 
 Wireframe is a prototype used in interface design to suggest the structure of a website and the connection between its pages. A wireframe web is a similar illustration of the layout of fundamental elements in the interface.
 
+
 #### 2.1 Authenticated User Page
 
-
-![image](wireframe1.png "Wireframe" )
+![Alt text](https://github.com/Alberto-Serra/LBAW-images/blob/15f9536dde2520c62800dc209843c06dcd519d84/wireframe1.png?raw=true "Wireframe")
 
 <div align="center">Figure 2: Authenticated User Wireframe</div>
 
-1. Application Info
-2. User Area
-3. Menu
-4. Search Bar
+1. Navigation - logo as home button and another pages (about, contacts, FAQ)
+2. User area (profile and notifications) 
+3. Navigation - redirect to workspace area with the projects, teams and users 
+4. Search Bar for projects, teams, users
+
+<br>
 
 #### 2.2 Unauthenticated User Page
 
-![image](wireframe2.png "Wireframe" )
+![Alt text](https://github.com/Alberto-Serra/LBAW-images/blob/15f9536dde2520c62800dc209843c06dcd519d84/wireframe2.png?raw=true "Wireframe")
+
 
 <div align="center">Figure 3: Unauthenticated User Wireframe</div>
 
-1. Application Info
-2. Login Area
-3. Menu
-4. Search Bar
+1. Navigation - logo as home button and another pages (about, contacts, FAQ)
+2. Login or sign up pages redirection area
+3. Redirection to About page with user app benefits and reasons to sign up
+4. Search Bar for projects, teams, users
+
+<br>
 
 #### 2.3 Login Page
 
-![image](wireframe3.png "Wireframe" )
+![Alt text](https://github.com/Alberto-Serra/LBAW-images/blob/15f9536dde2520c62800dc209843c06dcd519d84/wireframe3.png?raw=true "Wireframe")
+
 
 <div align="center">Figure 4: Login Wireframe</div>
 
-1. Application Info
-2. Login Area
-3. Sign Up Area
-4. Search Bar
+1. Navigation - logo as home button and another pages (about, contacts, FAQ)
+2. Login area (username and password or using authentication API)
+3. Sign Up redirection page area
+4. Search Bar for projects, teams, users
+
+
+<br>
+
 
 #### 2.4 User Tasks Page
 
-![image](wireframe4.PNG "Wireframe" )
+
+![Alt text](https://github.com/Alberto-Serra/LBAW-images/blob/15f9536dde2520c62800dc209843c06dcd519d84/wireframe4.PNG?raw=true "Wireframe")
 
 <div align="center">Figure 5: User Tasks Wireframe</div>
 
-1. Application Info
-2. User Area
-3. Search Bar
-4. Task Board
-5. Project Info
-6. All Tasks
+1. Navigation - logo as home button and another pages (about, contacts, FAQ)
+2. User area (profile and notifications) 
+3. Search Bar for projects, teams, users
+4. Task Board for team tasks management
+5. Redirection links to the team, project, team members or message forum (info associated to that team)
+6. All the respective Tasks (To Do, In Progress, Completed)
 
-### Team
+<br>
+
+## Team
 
 * Alberto Serra up202103627, up202103627@g.uporto.pt
 * Luísa Salvador up202006471, up202006471@g.uporto.pt
