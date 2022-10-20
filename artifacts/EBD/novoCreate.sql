@@ -6,8 +6,8 @@ DROP TABLE IF EXISTS Task;
 DROP TABLE IF EXISTS Member_Team;
 DROP TABLE IF EXISTS Team;
 DROP TABLE IF EXISTS Member_Notification;
-DROP TABLE IF EXISTS Notification;
 DROP TABLE IF EXISTS Member_Project;
+DROP TABLE IF EXISTS Notification;
 DROP TABLE IF EXISTS Project;
 DROP TABLE IF EXISTS Team_member;
 DROP TABLE IF EXISTS Admin;
@@ -41,8 +41,8 @@ CREATE TABLE Admin (
 
 CREATE TABLE Team_Member (
     id_user INTEGER REFERENCES "User" (id_user) ON UPDATE CASCADE,
-    position varchar(255) NOT NULL 
-    CONSTRAINT id_userPK PRIMARY KEY(id_user)
+    position varchar(255) NOT NULL,
+    CONSTRAINT team_memberPK PRIMARY KEY(id_user)
 );
 
 CREATE TABLE Project (
@@ -53,7 +53,15 @@ CREATE TABLE Project (
     company TEXT NOT NULL,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- podiamos usar como DEFAULT a data atual
     current_edit_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT id_projectPK PRIMARY KEY(id_project),
     CONSTRAINT current_edit_data_ck CHECK (creation_date < current_edit_data)
+);
+
+CREATE TABLE Notification (
+    id_notification SERIAL,
+    content TEXT NOT NULL,
+    type Notification_type NOT NULL,
+    CONSTRAINT id_notifcationPK PRIMARY KEY(id_notification)
 );
 
 CREATE TABLE Member_Project (
@@ -64,20 +72,12 @@ CREATE TABLE Member_Project (
     CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Notification (
-    id_notification SERIAL,
-    content TEXT NOT NULL,
-    type Notification_type NOT NULL,
-    CONSTRAINT id_notifcationPK PRIMARY KEY(id_notifcation)
-);
-
 CREATE TABLE Member_Notification (
     id_user INTEGER,
     id_notification INTEGER,
     CONSTRAINT member_notificationPK PRIMARY KEY(id_user, id_notification),
     CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_notificationFK FOREIGN KEY(id_notification) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE
-
 );
 
 CREATE TABLE Team (
@@ -87,7 +87,6 @@ CREATE TABLE Team (
     id_project INTEGER REFERENCES Project (id_project) ON UPDATE CASCADE,
     CONSTRAINT id_teamPK PRIMARY KEY(id_team),
     CONSTRAINT id_projectFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE
-
 );
 
 CREATE TABLE Member_Team (
@@ -128,8 +127,12 @@ CREATE TABLE Comment (
     id_user INTEGER,
     id_task INTEGER,
     id_team INTEGER,
+	comment INTEGER,
+	CONSTRAINT id_commentPK PRIMARY KEY(id_comment),
     CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT current_edit_data_ck CHECK (creation_date < current_edit_data)
 );
+
