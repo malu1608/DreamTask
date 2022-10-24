@@ -110,7 +110,7 @@ CREATE TABLE Task (
     title varchar(255) NOT NULL,
     description TEXT NOT NULL,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    current_edit_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     task_status Status NOT NULL DEFAULT 'To Do',
     deleted BOOLEAN NOT NULL DEFAULT False,
     id_team INTEGER REFERENCES Team (id_team) ON UPDATE CASCADE,
