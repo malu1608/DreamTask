@@ -61,7 +61,14 @@ CREATE TABLE Notification (
     id_notification SERIAL,
     content TEXT NOT NULL,
     type Notification_type NOT NULL,
+    id_task INTEGER,
+    id_comment INTEGER,
+    id_project INTEGER,
     CONSTRAINT id_notifcationPK PRIMARY KEY(id_notification)
+    CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE
+    
 );
 
 CREATE TABLE Member_Project (
@@ -103,7 +110,7 @@ CREATE TABLE Task (
     title varchar(255) NOT NULL,
     description TEXT NOT NULL,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    current_edit_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     task_status Status NOT NULL DEFAULT 'To Do',
     deleted BOOLEAN NOT NULL DEFAULT False,
     id_team INTEGER REFERENCES Team (id_team) ON UPDATE CASCADE,
