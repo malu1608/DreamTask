@@ -36,7 +36,8 @@ CREATE TABLE "User" (
 );
 
 CREATE TABLE Admin (
-    id_admin INTEGER REFERENCES "User" (id_user) ON DELETE CASCADE ON UPDATE CASCADE
+    id_admin INTEGER REFERENCES "User" (id_user) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_adminPK PRIMARY KEY(id_admin)
 );
 
 CREATE TABLE Team_Member (
@@ -64,7 +65,7 @@ CREATE TABLE Notification (
     id_task INTEGER,
     id_comment INTEGER,
     id_project INTEGER,
-    CONSTRAINT id_notifcationPK PRIMARY KEY(id_notification)
+    CONSTRAINT id_notificationPK PRIMARY KEY(id_notification)
     CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE
