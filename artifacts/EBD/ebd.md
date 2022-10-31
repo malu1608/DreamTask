@@ -7,7 +7,7 @@ The purpose of this project is to develop a web application called DreamTask, wh
 
 ### 1. Class diagram
 
-![image](uml.png "UML")
+![UML](https://github.com/rafazalves/LBAW-IMAGES/blob/main/umldiagram.png?raw=true "Figure 1: Class diagram")
 
 <div align="center">Figure 1: Class diagram</div>
 
