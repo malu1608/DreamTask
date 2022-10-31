@@ -1,13 +1,12 @@
-
 --Drop tables
+DROP TABLE IF EXISTS Member_Project;
+DROP TABLE IF EXISTS Member_Notification;
+DROP TABLE IF EXISTS Notification;
 DROP TABLE IF EXISTS Comment;
 DROP TABLE IF EXISTS Task_Member;
 DROP TABLE IF EXISTS Task;
 DROP TABLE IF EXISTS Member_Team;
 DROP TABLE IF EXISTS Team;
-DROP TABLE IF EXISTS Member_Notification;
-DROP TABLE IF EXISTS Member_Project;
-DROP TABLE IF EXISTS Notification;
 DROP TABLE IF EXISTS Project;
 DROP TABLE IF EXISTS Team_member;
 DROP TABLE IF EXISTS Admin;
@@ -52,41 +51,19 @@ CREATE TABLE Project (
     description TEXT NOT NULL,
     project_status Status DEFAULT 'To Do',
     company TEXT NOT NULL,
-    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- podiamos usar como DEFAULT a data atual
-    current_edit_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT id_projectPK PRIMARY KEY(id_project),
-    CONSTRAINT current_edit_data_ck CHECK (creation_date < current_edit_data)
+    CONSTRAINT current_edit_date_ck CHECK (creation_date < current_edit_date)
 );
-
-CREATE TABLE Notification (
-    id_notification SERIAL,
-    content TEXT NOT NULL,
-    type Notification_type NOT NULL,
-    id_task INTEGER,
-    id_comment INTEGER,
-    id_project INTEGER,
-    CONSTRAINT id_notificationPK PRIMARY KEY(id_notification)
-    CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE
-    
-);
-
 CREATE TABLE Member_Project (
     id_project INTEGER,
     id_user INTEGER,
     CONSTRAINT member_projectPK PRIMARY KEY(id_project, id_user),
-    CONSTRAINT id_projectFK FOREIGN KEY(id_project) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_projectFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Member_Notification (
-    id_user INTEGER,
-    id_notification INTEGER,
-    CONSTRAINT member_notificationPK PRIMARY KEY(id_user, id_notification),
-    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT id_notificationFK FOREIGN KEY(id_notification) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE
-);
 
 CREATE TABLE Team (
     id_team SERIAL,
@@ -106,6 +83,7 @@ CREATE TABLE Member_Team (
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
 CREATE TABLE Task (
     id_Task SERIAL,
     title varchar(255) NOT NULL,
@@ -114,10 +92,12 @@ CREATE TABLE Task (
     current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     task_status Status NOT NULL DEFAULT 'To Do',
     deleted BOOLEAN NOT NULL DEFAULT False,
-    id_team INTEGER REFERENCES Team (id_team) ON UPDATE CASCADE,
+    id_team INTEGER,
     CONSTRAINT id_taskPK PRIMARY KEY(id_task),
-    CONSTRAINT current_edit_data_ck CHECK (creation_date < current_edit_data)
+	CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT current_edit_date_ck CHECK (creation_date < current_edit_date)
 );
+
 
 CREATE TABLE Task_Member (
     id_user INTEGER,
@@ -131,7 +111,7 @@ CREATE TABLE Comment (
     id_comment SERIAL,
     content TEXT NOT NULL,
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    current_edit_data TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     id_user INTEGER,
     id_task INTEGER,
     id_team INTEGER,
@@ -141,6 +121,31 @@ CREATE TABLE Comment (
     CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT current_edit_data_ck CHECK (creation_date < current_edit_data)
+    CONSTRAINT current_edit_date_ck CHECK (creation_date < current_edit_date)
 );
+
+
+CREATE TABLE Notification (
+    id_notification SERIAL,
+    content TEXT NOT NULL,
+    type Notification_type NOT NULL,
+    id_task INTEGER,
+    id_comment INTEGER,
+    id_project INTEGER,
+    CONSTRAINT id_notificationPK PRIMARY KEY(id_notification),
+    CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_teamFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE
+    
+);
+
+CREATE TABLE Member_Notification (
+    id_user INTEGER,
+    id_notification INTEGER,
+	is_favorite BOOLEAN NOT NULL DEFAULT False,
+    CONSTRAINT member_notificationPK PRIMARY KEY(id_user, id_notification),
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_notificationFK FOREIGN KEY(id_notification) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 
