@@ -54,7 +54,7 @@ CREATE TABLE Project (
     creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT id_projectPK PRIMARY KEY(id_project),
-    CONSTRAINT current_edit_date_ck CHECK (creation_date < current_edit_date)
+    CONSTRAINT current_edit_date_ck CHECK (creation_date <= current_edit_date)
 );
 CREATE TABLE Member_Project (
     id_project INTEGER,
@@ -95,7 +95,7 @@ CREATE TABLE Task (
     id_team INTEGER,
     CONSTRAINT id_taskPK PRIMARY KEY(id_task),
 	CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT current_edit_date_ck CHECK (creation_date < current_edit_date)
+    CONSTRAINT current_edit_date_ck CHECK (creation_date <= current_edit_date)
 );
 
 
@@ -121,7 +121,7 @@ CREATE TABLE Comment (
     CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT current_edit_date_ck CHECK (creation_date < current_edit_date)
+    CONSTRAINT current_edit_date_ck CHECK (creation_date <= current_edit_date)
 );
 
 
