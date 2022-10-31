@@ -94,11 +94,11 @@ INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 4',
 INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 5', 3, 8, 5);
 
 /*Notification*/
-INSERT INTO Notification (content, Notification_type, id_task) VALUES ('notification 1', 'Task', 1);
-INSERT INTO Notification (content, Notification_type, id_comment) VALUES ('notification 2', 'Comment', 3);
-INSERT INTO Notification (content, Notification_type, id_project) VALUES ('notification 3', 'Project', 3);
-INSERT INTO Notification (content, Notification_type, id_task) VALUES ('notification 4', 'Task', 8);
-INSERT INTO Notification (content, Notification_type, id_project) VALUES ('notification 5', 'Project', 1);
+INSERT INTO Notification (content, type, id_task) VALUES ('notification 1', 'Task', 1);
+INSERT INTO Notification (content, type, id_comment) VALUES ('notification 2', 'Comment', 3);
+INSERT INTO Notification (content, type, id_project) VALUES ('notification 3', 'Project', 3);
+INSERT INTO Notification (content, type, id_task) VALUES ('notification 4', 'Task', 8);
+INSERT INTO Notification (content, type, id_project) VALUES ('notification 5', 'Project', 1);
 
 
 /*Member_Notification*/

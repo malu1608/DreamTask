@@ -90,43 +90,49 @@ Table 4: Authenticated users user stories
 |------------|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------|
 | US15      | Delete user              | high     | As an Admin, I want to be able to delete a user so that I can keep control of who is using the platform.                                |
 | US16       | Delete Team          | high     | As an Admin,  I want to be able to delete a team so that I can keep control of what teams are using the platform.                           |
-| US17       | Add FAQ         | low     | As an Admin, I want to add the most common questions so the users don’t need to ask me the same things.        
-| US18       | Edit FAQ       | low     | As an Admin, I want to edit comments, so the I can manage the users comments and my own too.         |                         |
-| US19       | Remove FAQ       | low     | As an Admin, I want to remove the most common questions so the users don’t need to ask me the same things.         |
+| US17       | Block and Unblock User Accounts       | high    | As an Admin, I want to block and unblock user accounts so that I can control what certain users can do.         |
+| US18       | Edit accounts       | high    | As an Admin, I want to edit accounts so that I can change things about certain user profiles.         |
+| US19       | Add FAQ         | low     | As an Admin, I want to add the most common questions so the users don’t need to ask me the same things.        
+| US20       | Edit FAQ       | low     | As an Admin, I want to edit comments, so the I can manage the users comments and my own too.         |                         |
+| US21       | Remove FAQ       | low     | As an Admin, I want to remove the most common questions so the users don’t need to ask me the same things.         |
 
 Table 5: Administrator's user stories
+
+<br>
 
 **Team Member**
 
 | Identifier | Name                  | Priority | Description                                                                                                           |
 |------------|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------|
-| US20      | Switch Project              | high     | As a Team Member, I want to change projects, so that I can always be satisfied and motivated with my work and still be inside the same workspace.                                |
-| US21       | Switch Team          | high     | As a Team Member, I want to switch teams, so that  I can help a team that is having difficulties finishing their part of the project.                           |
-| US22       | View Projects         | high     | As a Team Member, I want to access the home page, so that I can see my projects.                                 |
-| US23       | View Task       | high     | As an Authenticated User, I want to see my task, so that I can see more information about it like the description or the assignees.         |
-| US24       | View TaskList         | high     | As a Team Member, I want to see my task list, so that I can see the amount of work I have to accomplish.                                 |
-| US25       | Add Task        | high     | As a Team Member, I want to add a task, so that I can have the new task registered.                                 |
-| US26       | Remove Task       | high     | As a Team Member, I want to remove a task so that whenever I can’t find its purpose on the project, it doesn’t affect the workflow.                                 |
-| US27       | Search Task        | high     | As a Team Member, I want to search for a task, so that I can find the task faster.                                 |
-| US28       | Add comment        | high     | As a Team Member, I want to comment in the team  forum, so that I can inform others about proposals, errors or issues.                                 |
-| US29       | Edit comment       | high     | As a Team Member, I want to edit a comment in the team forum, so that I can make clearer what I want to say.                                 |
-| US30       | Delete my comment        | high     | As a Team Member, I want to eliminate a comment, so that I can have only constructive comments on the team forum.                                 |
-| US31       | View history of previous tasks        | high     | As a Team Member, I want to view the history of previous tasks, so that I can recover lost tasks.                                 |
-| US32       | Mark as Completed       | low     | As a Team Member, I want to mark the tasks as completed, so that I can keep track of the work done.                               |
-| US33       | Mark as Uncompleted        | low     | As a Team Member, I want to mark the tasks as completed, so that I can keep track of the unfinished work.                                |
-| US34       | Reply Comments        | low     | As a Team Member,  I want to reply to comments, so that I can interact with a comment.                                |
+| US22      | Switch Project              | high     | As a Team Member, I want to change projects, so that I can always be satisfied and motivated with my work and still be inside the same workspace.                                |
+| US23       | Switch Team          | high     | As a Team Member, I want to switch teams, so that  I can help a team that is having difficulties finishing their part of the project.                           |
+| US24       | View Projects         | high     | As a Team Member, I want to access the home page, so that I can see my projects.                                 |
+| US25       | View Task       | high     | As an Authenticated User, I want to see my task, so that I can see more information about it like the description or the assignees.         |
+| US26       | View TaskList         | high     | As a Team Member, I want to see my task list, so that I can see the amount of work I have to accomplish.                                 |
+| US27       | Add Task        | high     | As a Team Member, I want to add a task, so that I can have the new task registered.                                 |
+| US28       | Remove Task       | high     | As a Team Member, I want to remove a task so that whenever I can’t find its purpose on the project, it doesn’t affect the workflow.                                 |
+| US29       | Search Task        | high     | As a Team Member, I want to search for a task, so that I can find the task faster.                                 |
+| US30       | Add comment        | high     | As a Team Member, I want to comment in the team  forum, so that I can inform others about proposals, errors or issues.                                 |
+| US31       | Edit comment       | high     | As a Team Member, I want to edit a comment in the team forum, so that I can make clearer what I want to say.                                 |
+| US32       | Delete my comment        | high     | As a Team Member, I want to eliminate a comment, so that I can have only constructive comments on the team forum.                                 |
+| US33       | View history of previous tasks        | high     | As a Team Member, I want to view the history of previous tasks, so that I can recover lost tasks.                                 |
+| US34       | Mark as Completed       | low     | As a Team Member, I want to mark the tasks as completed, so that I can keep track of the work done.                               |
+| US35       | Mark as Uncompleted        | low     | As a Team Member, I want to mark the tasks as completed, so that I can keep track of the unfinished work.                                |
+| US36       | Reply Comments        | low     | As a Team Member,  I want to reply to comments, so that I can interact with a comment.                                |
 
 Table 6: Team Member's user stories
+
+<br>
 
 **Team Coordinator**
 
 | Identifier | Name                  | Priority | Description                                                                                                           |
 |------------|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------|
-| US35      | Distribute Tasks to Team Members              | high     | As a Team Coordinator, I want to distribute tasks to Team Members, so that I distribute tasks equally.                                |
-| US36       | Add Team Members          | high     | As a Team Coordinator, I want to add Team Members, so that I can have a bigger team.                           |
-| US37       | Remove Team Members         | high     | As a Team Coordinator, I want to remove Team Members, so that I can keep my Team Members updated.                                 |
-| US38       | Edit Project Information       | high     | As a Team Coordinator, I want to Edit Project Information, so that I can change information about the project that needed to be improved. |
-| US39       | Remove Project         | high     | As a Team Coordinator, I want to Remove a Project, so that I can delete a project that is no longer needed.                           |
+| US37      | Distribute Tasks to Team Members              | high     | As a Team Coordinator, I want to distribute tasks to Team Members, so that I distribute tasks equally.                                |
+| US38       | Add Team Members          | high     | As a Team Coordinator, I want to add Team Members, so that I can have a bigger team.                           |
+| US39       | Remove Team Members         | high     | As a Team Coordinator, I want to remove Team Members, so that I can keep my Team Members updated.                                 |
+| US40       | Edit Project Information       | high     | As a Team Coordinator, I want to Edit Project Information, so that I can change information about the project that needed to be improved. |
+| US41       | Remove Project         | high     | As a Team Coordinator, I want to Remove a Project, so that I can delete a project that is no longer needed.                           |
 
 Table 7: Team Coordinator's user stories
 
