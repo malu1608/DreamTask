@@ -9,6 +9,8 @@ The purpose of this project is to develop a web application called DreamTask, wh
 
 ![image](uml.png "UML")
 
+<div align="center">Figure 1: Class diagram</div>
+
 ### 2. Additional Business Rules 
 
 These are some additional rules that can be independent or related to the UML diagram.
