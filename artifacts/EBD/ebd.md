@@ -733,8 +733,8 @@ INSERT INTO Member_Notification (id_user, id_notification) VALUES (3, 5);
 
 Changes made to the first submission:
 
-1.
-2.
+1. Making Team Coordinator inherit from Team Member
+2. Update Administrator User Stories
 
 <br>
 
