@@ -29,7 +29,7 @@ The Relational Schema is used to represent the data to be entered into the datab
 
 ### 1. Relational Schema
 | Relational Reference | Relation Compact Notation  |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------- | 
+| -------------------- | ------------------------------------------------------------------------------------------------------------------- | 
 | R01 | User (<ins>id_user</ins>, username UK NN, first_name NN, last_name NN, email UK NN, description)| 
 | R02 | Admin (id_user -> User) |
 | R03 | Team_Member (id_user -> User, position NN) | 
