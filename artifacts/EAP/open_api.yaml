@@ -116,8 +116,8 @@ paths:
                  type: string
                  format: binary
              required:
-                                    - email
-                                   - password
+                - email
+                - password
 
      responses:
        '302':
