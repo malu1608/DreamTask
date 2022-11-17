@@ -1,41 +1,151 @@
-create schema if not exists lbaw;
+--Drop tables
+DROP TABLE IF EXISTS Member_Project;
+DROP TABLE IF EXISTS Member_Notification;
+DROP TABLE IF EXISTS Notification;
+DROP TABLE IF EXISTS Comment;
+DROP TABLE IF EXISTS Task_Member;
+DROP TABLE IF EXISTS Task;
+DROP TABLE IF EXISTS Member_Team;
+DROP TABLE IF EXISTS Team;
+DROP TABLE IF EXISTS Project;
+DROP TABLE IF EXISTS Team_member;
+DROP TABLE IF EXISTS Admin;
+DROP TABLE IF EXISTS "User";
 
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS cards CASCADE;
-DROP TABLE IF EXISTS items CASCADE;
+--Drop Types
 
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  email VARCHAR UNIQUE NOT NULL,
-  password VARCHAR NOT NULL,
-  remember_token VARCHAR
+DROP TYPE IF EXISTS Notification_Type CASCADE;
+DROP TYPE IF EXISTS Status CASCADE;
+
+--TYPES
+
+CREATE TYPE Notification_Type AS ENUM ('Comment','Task','Project');
+CREATE TYPE Status AS ENUM ('To Do','In Progress','Done');
+
+--Tables
+
+CREATE TABLE "User" (
+   id_user SERIAL,
+   username varchar(255) NOT NULL UNIQUE,
+   first_name varchar(255) NOT NULL,
+   last_name varchar(255) NOT NULL,
+   email varchar(255) NOT NULL UNIQUE,
+   description TEXT,
+   CONSTRAINT id_userPK PRIMARY KEY(id_user)
 );
 
-CREATE TABLE cards (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  user_id INTEGER REFERENCES users NOT NULL
+CREATE TABLE Admin (
+    id_admin INTEGER REFERENCES "User" (id_user) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_adminPK PRIMARY KEY(id_admin)
 );
 
-CREATE TABLE items (
-  id SERIAL PRIMARY KEY,
-  card_id INTEGER NOT NULL REFERENCES cards ON DELETE CASCADE,
-  description VARCHAR NOT NULL,
-  done BOOLEAN NOT NULL DEFAULT FALSE
+CREATE TABLE Team_Member (
+    id_user INTEGER REFERENCES "User" (id_user) ON UPDATE CASCADE,
+    position varchar(255) NOT NULL,
+    CONSTRAINT team_memberPK PRIMARY KEY(id_user)
 );
 
-INSERT INTO users VALUES (
-  DEFAULT,
-  'John Doe',
-  'admin@example.com',
-  '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W'
-); -- Password is 1234. Generated using Hash::make('1234')
+CREATE TABLE Project (
+    id_project SERIAL,
+    name varchar(255) NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    project_status Status DEFAULT 'To Do',
+    company TEXT NOT NULL,
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT id_projectPK PRIMARY KEY(id_project),
+    CONSTRAINT current_edit_date_ck CHECK (creation_date <= current_edit_date)
+);
+CREATE TABLE Member_Project (
+    id_project INTEGER,
+    id_user INTEGER,
+    CONSTRAINT member_projectPK PRIMARY KEY(id_project, id_user),
+    CONSTRAINT id_projectFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-INSERT INTO cards VALUES (DEFAULT, 'Things to do', 1);
-INSERT INTO items VALUES (DEFAULT, 1, 'Buy milk');
-INSERT INTO items VALUES (DEFAULT, 1, 'Walk the dog', true);
 
-INSERT INTO cards VALUES (DEFAULT, 'Things not to do', 1);
-INSERT INTO items VALUES (DEFAULT, 2, 'Break a leg');
-INSERT INTO items VALUES (DEFAULT, 2, 'Crash the car');
+CREATE TABLE Team (
+    id_team SERIAL,
+    name varchar(255) NOT NULL UNIQUE,
+    field varchar(255) NOT NULL,
+    id_project INTEGER REFERENCES Project (id_project) ON UPDATE CASCADE,
+    CONSTRAINT id_teamPK PRIMARY KEY(id_team),
+    CONSTRAINT id_projectFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Member_Team (
+    id_user INTEGER,
+    id_team INTEGER,
+    is_coordinator BOOLEAN NOT NULL DEFAULT False,
+    CONSTRAINT member_teamPK PRIMARY KEY(id_user, id_team),
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Task (
+    id_Task SERIAL,
+    title varchar(255) NOT NULL,
+    description TEXT NOT NULL,
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    task_status Status NOT NULL DEFAULT 'To Do',
+    deleted BOOLEAN NOT NULL DEFAULT False,
+    id_team INTEGER,
+    CONSTRAINT id_taskPK PRIMARY KEY(id_task),
+	CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT current_edit_date_ck CHECK (creation_date <= current_edit_date)
+);
+
+
+CREATE TABLE Task_Member (
+    id_user INTEGER,
+    id_task INTEGER,
+    CONSTRAINT task_memeberPK PRIMARY KEY(id_user, id_task),
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Comment (
+    id_comment SERIAL,
+    content TEXT NOT NULL,
+    creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    current_edit_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_user INTEGER,
+    id_task INTEGER,
+    id_team INTEGER,
+	comment INTEGER,
+	CONSTRAINT id_commentPK PRIMARY KEY(id_comment),
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT current_edit_date_ck CHECK (creation_date <= current_edit_date)
+);
+
+
+CREATE TABLE Notification (
+    id_notification SERIAL,
+    content TEXT NOT NULL,
+    type Notification_type NOT NULL,
+    id_task INTEGER,
+    id_comment INTEGER,
+    id_project INTEGER,
+    CONSTRAINT id_notificationPK PRIMARY KEY(id_notification),
+    CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_teamFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE
+    
+);
+
+CREATE TABLE Member_Notification (
+    id_user INTEGER,
+    id_notification INTEGER,
+	is_favorite BOOLEAN NOT NULL DEFAULT False,
+    CONSTRAINT member_notificationPK PRIMARY KEY(id_user, id_notification),
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_notificationFK FOREIGN KEY(id_notification) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
