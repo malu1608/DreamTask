@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -23,14 +25,59 @@
   <body>
     <main>
       <header>
-        <h1><a href="{{ url('/cards') }}">Thingy!</a></h1>
+        <h1><a href="{{ url('/home') }}"> DreamTask</a></h1>
         @if (Auth::check())
         <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
         @endif
+        <!-- 
+        <img src="icons/bell.svg" alt="Bell Icon" width="38" height="38" id="notificationBellButton" onclick="viewNotifications()">
+        <a id=notificationsDropdownAnchor>
+          <div id="notificationsDropdown" class="notificationsDropdownHidden">
+            <ul>
+              <li>
+                notificacao 1
+              </li>
+              <li>
+                notificacao 2
+              </li>
+            </ul>
+          </div>
+        </a>
+      -->
+      <h1 style="font-size: 25px;" > <a href="{{ url('/cards') }}"> Log In  </a> </h1>
+      <h1><a class="button" href="{{ url('/logout') }}"> Sign Up </a></h1>
       </header>
-      <section id="content">
-        @yield('content')
-      </section>
+      @yield('content')
+      <div class="footer-dark">
+        <footer>
+              <div class="footerbox">
+                  <div class="footerow">
+                      <div class="copyright">DreamTask © 2022</div>
+
+                      <div>
+                      <a href="/aboutus">
+                          <h3>About us </h3>
+                      </a>    
+                      </div>
+                      <div>
+                      <a href="/contactus">
+                          <h3>Contact us </h3>
+                      </a>
+                      </div>
+                      
+                      <div>
+                      <a href="/faq">
+                          <h3>FAQ</h3>
+                          </a>
+                      </div>    
+                      <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                     
+                    
+                  </div>
+                  
+              </div>
+          </footer>
+        </div>
     </main>
   </body>
 </html>

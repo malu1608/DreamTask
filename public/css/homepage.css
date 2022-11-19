@@ -1,0 +1,75 @@
+section#b{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+    margin-top: 150px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    
+}
+section#b > div {
+    padding: 1.5rem 3rem;
+    background: linear-gradient(rgb(64, 50, 148), rgb(76, 154, 255)) no-repeat;
+    color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: fit-content;
+}
+
+section > div{
+    padding: 1.5rem 3rem;
+    color: rgb(45, 64, 175);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    font-size: large;
+    
+    
+}
+.sloganBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 15px 40px;
+    width: 33%;
+    font-family: unset;
+    font-size: xx-large; 
+}
+.featureBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 15px 40px;
+    width: 33%; 
+}
+
+footer {
+    background-color: antiquewhite;
+}
+
+#tryItNowBox {
+    position: relative;
+    transform: translateY(-50%);
+    padding: 1.5rem 3rem;
+    background: linear-gradient(rgb(64, 50, 148), rgb(76, 154, 255)) no-repeat;
+    color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+}
+
+#tryItNowBox > h4 {
+    margin: 0 15px;
+}

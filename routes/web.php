@@ -11,8 +11,24 @@
 |
 */
 // Home
-Route::get('/', 'Auth\LoginController@home');
-
+Route::get('/', function() {
+    return view('pages.home');
+});
+Route::get('/home', function() {
+    return view('pages.home');
+});
+Route::get('/aboutus', function() {
+    return view('pages.aboutus');
+});
+Route::get('/contactus', function() {
+    return view('pages.contactus');
+});
+Route::get('/faq', function() {
+    return view('pages.faq');
+});
+Route::get('/homeauthenticated', function() {
+    return view('pages.homeauthenticated');
+});
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');

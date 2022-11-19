@@ -177,4 +177,8 @@ function createItem(item) {
   return new_item;
 }
 
+const viewNotifications = function() {
+  document.getElementById('notificationsDropdown').classList.toggle('notificationsDropdownHidden')
+}
+
 addEventListeners();
