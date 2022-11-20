@@ -46,3 +46,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+//Admin
+Route::get('/admin/users', 'AdminController@showUsers')->name('show-admin-users');
+Route::get('/admin/users/{id}/remove', 'AdminController@removeUser');
+Route::get('/admin/users/{id}/edit', 'AdminController@editUser');
