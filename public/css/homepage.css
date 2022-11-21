@@ -6,14 +6,15 @@ section#b{
     margin-top: 150px;
 }
 
-section {
+section#a {
     display: flex;
     flex-direction: column;
     
+    scroll-margin-top: 72px;
 }
 section#b > div {
     padding: 1.5rem 3rem;
-    background: linear-gradient(rgb(64, 50, 148), rgb(76, 154, 255)) no-repeat;
+    background: linear-gradient(rgb(120, 218, 172), rgb(17, 131, 4)) no-repeat;
     color: rgb(255, 255, 255);
     border-radius: 0.5rem;
     overflow: hidden;
@@ -23,7 +24,7 @@ section#b > div {
     width: fit-content;
 }
 
-section > div{
+section#a > div{
     padding: 1.5rem 3rem;
     color: rgb(45, 64, 175);
     border-radius: 0.5rem;
@@ -33,8 +34,6 @@ section > div{
     justify-content: space-evenly;
     width: 100%;
     font-size: large;
-    
-    
 }
 .sloganBox{
     display: flex;
@@ -64,8 +63,8 @@ footer {
 #tryItNowBox {
     position: relative;
     transform: translateY(-50%);
-    padding: 1.5rem 3rem;
-    background: linear-gradient(rgb(64, 50, 148), rgb(76, 154, 255)) no-repeat;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(rgb(9, 104, 59), rgb(17, 131, 4)) no-repeat;
     color: rgb(255, 255, 255);
     border-radius: 0.5rem;
 }

@@ -14,7 +14,10 @@
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/homeaupage.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -27,11 +30,12 @@
       <header>
         <h1><a href="{{ url('/home') }}"> DreamTask</a></h1>
         @if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
-        @endif
-        <!-- 
-        <img src="icons/bell.svg" alt="Bell Icon" width="38" height="38" id="notificationBellButton" onclick="viewNotifications()">
-        <a id=notificationsDropdownAnchor>
+        <h1>
+          <a id=notificationsDropdownAnchor>
+
+          <span class="material-symbols-outlined bell" onclick="viewNotifications()">
+            notifications
+          </span> 
           <div id="notificationsDropdown" class="notificationsDropdownHidden">
             <ul>
               <li>
@@ -43,10 +47,17 @@
             </ul>
           </div>
         </a>
-      -->
-      <h1 style="font-size: 25px;" > <a href="{{ url('/cards') }}"> Log In  </a> </h1>
-      <h1><a class="button" href="{{ url('/logout') }}"> Sign Up </a></h1>
+        </h1>
+        <span>{{ Auth::user()->name }}</span>  <a class="button" href="{{ url('/logout') }}"> Logout </a> 
+
+      @endif
+      @if (!Auth::check())
+      <h1 style="font-size: 25px;" > <a href="{{ url('/login') }}"> Log In  </a> </h1>
+      <h1><a class="button" href="{{ url('/register') }}"> Sign Up </a></h1> 
+      @endif
+      
       </header>
+    
       @yield('content')
       <div class="footer-dark">
         <footer>
@@ -71,8 +82,6 @@
                           </a>
                       </div>    
                       <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
-                     
-                    
                   </div>
                   
               </div>

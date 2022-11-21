@@ -7,7 +7,7 @@ body {
 }
 
 main {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,7 +15,7 @@ main {
 
 main > header {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto auto auto auto;
   align-items: center;
   padding: 1em;
   margin: 1em;
@@ -23,7 +23,7 @@ main > header {
 main > header h1 {
   font-size: 35px;
   margin: 0;
-  margin-right: 40px;
+  margin-right: 15px;
 }
 main > header a.button {
   margin: 1em;
@@ -46,8 +46,12 @@ main > header span {
   justify-self: center;
 }
 #cards {
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(3, 1fr);
+  flex-direction: row;
+  justify-items: flex-start;
+  overflow-x: scroll;
+  width: 100%;
 }
 #cards article.card {
   display: flex;
@@ -55,6 +59,8 @@ main > header span {
   background-color: #d3edc3;
   padding: 1em;
   margin: 1em;
+  max-width: 300px;
+  min-width: 400px;
 }
 #cards article.card header {
   display: flex;
@@ -125,7 +131,7 @@ main > header span {
   }
   main > header {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto auto;
   }
   main > header h1 {
     grid-row-end: span 2;
@@ -172,7 +178,7 @@ a.button.button-outline {
   color: #9b4dca;
 }
 a {
-  color: #fff;
+  color: darkgreen;
 }
 input[type=text]:focus,
 input[type=email]:focus,
@@ -192,7 +198,7 @@ input[type=password]:focus {
   position: absolute;
   height: 300px;
   width: 200px;
-  background-color: white;
+  background-color: rgb(189, 126, 211);
   transform: translateX(calc(-100% + 20px));
 }
 
@@ -297,4 +303,104 @@ input[type=password]:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.bell{
+  margin: 0;
+  color: black;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+
+}
+
+#page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+#leftBar {
+  width: 20vw;
+}
+
+#content {
+  width: 100%;
+}
+
+.newitembar{
+  width: 100%;
+}
+
+.navbar{
+  min-height: 100%;
+}
+
+
+.texttk{
+  text-align: center;
+  font-size: large;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: honeydew;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  
+  color: darkolivegreen;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.spaceforsidebar{
+  height: 100%;
+}
+
+.pagespace{
+  display: flex;
+  flex-direction: row;
+}
+
+.usersDropdownHidden{
+  display: none;
+}
+
+.taskboardbar{
+  font-weight: bold;
 }

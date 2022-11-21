@@ -182,3 +182,8 @@ const viewNotifications = function() {
 }
 
 addEventListeners();
+
+const viewUsers = function() {
+  document.getElementById('usersDropdown').classList.toggle('usersDropdownHidden')
+  console.log("ola")
+}
