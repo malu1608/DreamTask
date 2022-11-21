@@ -8,8 +8,6 @@ class Task extends Model
 {
   public $timestamps  = false;
 
-  protected $table = 'tasks';
-
   /**
    * The attributes that are mass assignable.
    *

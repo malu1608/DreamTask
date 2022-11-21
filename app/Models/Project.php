@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Project extends Model
 {
   public $timestamps  = false;
 
@@ -24,12 +24,12 @@ class Task extends Model
 
   public function members()
   {
-    return $this->belongsToMany(TeamMember::class);
+    return $this->belongsToMany(User::class);
   }
 
   public function teams()
   {
-    return $this->belongsToMany(Team::class);
+    return $this->hasMany(Team::class);
   }
 
 }
