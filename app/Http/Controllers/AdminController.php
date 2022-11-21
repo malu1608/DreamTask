@@ -25,4 +25,19 @@ class AdminController extends Controller
     {
         
     }
+
+    /**
+     * Delete user by his id
+     *
+     * @return Response
+     */
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        if (Amin::where('id_admin', '=', $request->user()->id_user)->count() > 0) {
+            return redirect()->back()->withErrors("You can't delete an admin account.");
+        }
+        $user->delete();
+        return redirect('/admin/manageUsers');
+    }
 }

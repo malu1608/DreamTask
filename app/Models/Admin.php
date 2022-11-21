@@ -13,11 +13,11 @@ class Admin extends Model
    *
    * @var array
    */
-  protected $fillable = ['id_user'];
+  protected $fillable = ['id_admin'];
 
   public function user()
   {
-    return $this->belongsTo(User::class, 'id_user');
+    return $this->belongsTo(User::class, 'id_admin');
   }
 
 }
