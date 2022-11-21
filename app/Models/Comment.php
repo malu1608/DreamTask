@@ -8,7 +8,6 @@ class Comment extends Model
 {
   public $timestamps  = false;
 
-
   /**
    * For mass assignes.
    *
