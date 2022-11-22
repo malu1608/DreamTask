@@ -4,19 +4,18 @@
 
 @section('content')
 
-<div class="navbar">      
-                  <div class="searchcontainer">
-                      <div class="wrap">
-                          <div class="search">
-                              
-                              <input type="text" placeholder="Search projects,tasks and teams..">
+<div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
+                        <h5>Your Tasks</h5>
+                        <div id= "navbarcards">
+                          <div class="searchcards">
+                          
+                              <input type="text" placeholder="Search..">
                               <button type="submit"> <i class="fa fa-search"></i>
                               </button>
                           </div>
-                      </div>
-                  </div>
-          
-<div class="taskboardbar">
+                        </div>
+
+                        </div>
 
   <span onclick="openNav()">&#9776; open project information
   <script>
@@ -28,13 +27,13 @@
     document.getElementById("mySidenav").style.width = "0";
   }
   </script>
-    
-  </span>
     <div class="texttk">Task Board </div>
     <hr>
   
 </div>
 
+  </span>
+    
 
 <div class="pagespace">
   <div id="mySidenav" class="sidenav">

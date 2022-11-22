@@ -15,9 +15,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homeaupage.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/bck.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -51,7 +54,7 @@
         <span>{{ Auth::user()->name }}</span>  <a class="button" href="{{ url('/logout') }}"> Logout </a> 
 
       @endif
-      @if (!Auth::check())
+      @if (!Auth::check()) 
       <h1 style="font-size: 25px;" > <a href="{{ url('/login') }}"> Log In  </a> </h1>
       <h1><a class="button" href="{{ url('/register') }}"> Sign Up </a></h1> 
       @endif

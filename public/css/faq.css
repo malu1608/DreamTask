@@ -1,0 +1,31 @@
+.faq{
+    background: #eee;
+    padding-top: 20px;
+    font-family: monospace;
+  }
+
+  .faq-item{
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+  .faq-body{
+    display: none;
+    margin-top: 30px;
+  }
+  .faq-wrapper{
+    width: 75%;
+    margin: 0 auto;
+  }
+  .faq-inner{
+    padding: 30px;
+    background: aliceblue;
+  }
+  .faq-plus{
+    float: right;
+    font-size: 1.4em;
+    line-height: 1em;
+    cursor: pointer;
+  }
+  .linhafaq{
+    background-color: #9b9b9b;
+  }

@@ -346,7 +346,8 @@ input[type=password]:focus {
 
 .texttk{
   text-align: center;
-  font-size: large;
+  font-size: xx-large;
+  font-family: "Manrope",sans-serif;
 }
 
 .sidenav {
@@ -403,4 +404,18 @@ input[type=password]:focus {
 
 .taskboardbar{
   font-weight: bold;
+}
+
+.searchcards{
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin-right: 700px;
+}
+
+.openpinf{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  margin-right: 55px;
 }

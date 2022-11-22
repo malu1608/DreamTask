@@ -41,9 +41,8 @@ section#b > div {
 }
 
 .wrap {
-    width: 40%;
-    margin: auto;
-    margin-top: 40px;
+    width: 500px;
+    
 }
 
 
@@ -68,12 +67,10 @@ section#b > div {
 
 .search{
     display: flex;
-    
 
 }
 .searchcontainer {
     text-align: center;
-    margin-bottom: 50px;
     
 }
 
