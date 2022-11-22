@@ -13,7 +13,7 @@ tags:
   - name: 'M01: Authentication and Individual Profile'
   - name: 'M02: Projects and Teams'
   - name: 'M03: Comments'
-  - name: 'M05: User Administration and Static pages'
+  - name: 'M04: User Administration and Static pages'
 
 paths:
   /login:
