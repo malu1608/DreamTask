@@ -57,7 +57,8 @@ Route::get('live_search', 'LiveSearch@index');
 Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.action');
 
 // User information
-Route::get('page/user/profile', [App\Http\Controllers\HomeController::class, 'userProfile'])->name('page/user/profile');
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('profile/edit_validation', [ProfileController::class, 'edit_validation'])->name('profile.edit_validation');
 
 
 // Projects
