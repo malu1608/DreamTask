@@ -16,7 +16,7 @@ class ProfileController extends Controller
 
     function index()
     {
-        $data = User::findOrFail(Auth::user()->id);
+        $data = User::findOrFail(Auth::User()->id_user);
         return view('profile', compact('data'));
     }
 
@@ -24,7 +24,10 @@ class ProfileController extends Controller
     {
         $request->validate([
             'email'     =>  'required|email',
-            'name'      =>  'required'
+            'username'    =>  'required',
+            'first_name'    =>  'required',
+            'last_name'    =>  'required',
+            'description'    =>  'required'
         ]);
 
         $data = $request->all();
@@ -32,23 +35,29 @@ class ProfileController extends Controller
         if(!empty($data['password']))
         {
             $form_data = array(
-                'name'      =>  $data['name'],
+                'username'      =>  $data['username'],
+                'first_name'      =>  $data['first_name'],
+                'last_name'      =>  $data['last_name'],
                 'email'     =>  $data['email'],
+                'description'      =>  $data['description'],
                 'password'  =>  Hash::make($data['password'])
             );
         }
         else
         {
             $form_data = array(
-                'name'      =>  $data['name'],
-                'email'     =>  $data['email']
+                'username'      =>  $data['username'],
+                'first_name'      =>  $data['first_name'],
+                'last_name'      =>  $data['last_name'],
+                'email'     =>  $data['email'],
+                'description'      =>  $data['description']
             );
         }
 
-        User::whereId(Auth::user()->id)->update($form_data);
+        User::whereId(Auth::User()->id_user)->update($form_data);
 
         return redirect('profile')->with('success', 'Profile Data Updated');
-        
+
     }
 
 }
