@@ -513,3 +513,5 @@ In this section the web resources that were implemented in the prototype are des
 |  R403: FAQ     | GET /faq              |
 |  R404: 404     | GET /404                                                         |
 
+### 2. Prototype
+
