@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,9 +17,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    
+
     public function userProfile()
     {
-        return view('usermanagement.user_profile');
+        return view('user_profile');
     }
 }
