@@ -12,7 +12,7 @@ servers:
 tags:
   - name: 'M01: Authentication and Individual Profile'
   - name: 'M02: Projects and Teams'
-  - name: 'M03: Comments'
+  - name: 'M03: Tasks'
   - name: 'M04: User Administration and Static pages'
 
 paths:
@@ -260,6 +260,7 @@ paths:
                    company: Company 1
                    creation_date: 2022-11-20
                    current_edit_data: 2022-11-21
+
   /about:
    get:
      operationId: R401
@@ -270,6 +271,7 @@ paths:
      responses:
        '200':
          description: 'Ok. Show about page'
+
   /services:
    get:
      operationId: R402
@@ -280,6 +282,7 @@ paths:
      responses:
        '200':
          description: 'Ok. Show services page'
+
   /faq:
    get:
      operationId: R403
