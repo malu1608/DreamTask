@@ -4,31 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Task extends Model
 {
   public $timestamps  = false;
 
-
   /**
-   * For mass assignes.
+   * The attributes that are mass assignable.
    *
    * @var array
    */
-  protected $fillable = ['notification_type', 'id_project', 'id_task', 'id_comment'];
+  protected $fillable = [
+      'title', 'description', 'task_status', 'id_team'
+  ];
 
 
   public function project()
   {
-    return $this->belongsTo(Project::class, 'id_project');
+    return $this->belongsTo(Project::class);
   }
 
-  public function task()
+  public function comments()
   {
-    return $this->belongsTo(Task::class, 'id_task');
+    return $this->hasMany(Comment::class);
   }
 
-  public function comment()
+  public function notifications()
   {
-    return $this->belongsTo(Comment::class, 'id_comment');
+    return $this->hasMany(Notification::class);
   }
+
+  public function members()
+  {
+    return $this->belongsToMany(TeamMember::class);
+  }
+
+  public function team()
+  {
+    return $this->belongsTo(Team::class);
+  }
+
 }
