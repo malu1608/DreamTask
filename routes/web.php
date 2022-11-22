@@ -59,3 +59,8 @@ Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.actio
 // User information
 Route::get('page/user/profile', [App\Http\Controllers\HomeController::class, 'userProfile'])->name('page/user/profile');
 
+
+// Projects
+Route::get('projects', 'ProjectsController@showProjects');
+Route::get('create_project', 'ProjectsController@projectForm');
+Route::post('create_project', 'ProjectsController@createProject');
