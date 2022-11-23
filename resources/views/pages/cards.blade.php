@@ -13,11 +13,16 @@
           
                                 <div class="searchcontainer">
                                     <div class="wrap">
-                                        <div class="search">
                                         
-                                            <input type="text" placeholder="Search..">
-                                            <button type="submit"> <i class="fa fa-search"></i>
-                                            </button>
+                                    <input type="text" name="search" id="search" class="form-control" placeholder="Search tasks..." />                            
+                                        <div class="table-responsive" >
+                                            <table class="table table-striped ">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                
+      
                                         </div>
                                     </div>
                                 </div>
@@ -26,32 +31,6 @@
                 </div>
             </div>
         </div>
-<script>
-$(document).ready(function(){
-
- fetch_customer_data();
-
- function fetch_customer_data(query = '')
- {
-  $.ajax({
-   url:"{{ route('live_search.action') }}",
-   method:'GET',
-   data:{query:query},
-   dataType:'json',
-   success:function(data)
-   {
-    $('tbody').html(data.table_data);
-    $('#total_records').text(data.total_data);
-   }
-  })
- }
-
- $(document).on('keyup', '#search', function(){
-  var query = $(this).val();
-  fetch_customer_data(query);
- });
-});
-</script>
 
 <div class="taskboardbar">
   <div>
@@ -103,4 +82,31 @@ $(document).ready(function(){
 </section>
 </div>
 </div> 
+
+<script>
+$(document).ready(function(){
+
+ fetch_customer_data();
+
+ function fetch_customer_data(query = '')
+ {
+  $.ajax({
+   url:"{{ route('live_search.action_task') }}",
+   method:'GET',
+   data:{query:query},
+   dataType:'json',
+   success:function(data)
+   {
+    $('tbody').html(data.table_data);
+    $('#total_records').text(data.total_data);
+   }
+  })
+ }
+
+ $(document).on('keyup', '#search', function(){
+  var query = $(this).val();
+  fetch_customer_data(query);
+ });
+});
+</script>
 @endsection
