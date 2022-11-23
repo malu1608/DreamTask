@@ -1,0 +1,9 @@
+.about-section {
+    padding: 1.6em;
+}
+
+.about-section h1 {
+    padding-bottom: inherit;
+    font-size: 2.6em;
+    text-align: center;
+}
