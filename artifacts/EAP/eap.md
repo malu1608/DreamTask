@@ -517,9 +517,10 @@ In this section the web resources that were implemented in the prototype are des
 
 The prototype is **available** at  http://lbaw2242.lbaw.fe.up.pt/login.
 
-Credentials:
+`Credentials:`
 
 admin user: ruisilva@gmail.com/1234
+<br>
 regular user: armandopires@gmail.com/1235
 
 The code is **available** at https://git.fe.up.pt/lbaw/lbaw2223/lbaw2242.
