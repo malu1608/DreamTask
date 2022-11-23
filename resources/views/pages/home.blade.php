@@ -8,13 +8,13 @@
     <div>
         <div class="sloganBox">DreamTask 
         <p>Join you teammates , tools and tasks alltogether
-         <p> Build better- together</p>  </p>
+         <p> Build better- together</p>
         
         </div>
         <div class="sloganBox"><img src="icons/4380.jpg" alt="cloud" ></div>
 
-</div>   
-    </div>
+    </div>   
+    
 </section>
 <section id="b">
     <div data-testid="block" color="rgba(255, 255, 255, 1)">

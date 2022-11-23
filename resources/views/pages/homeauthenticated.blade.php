@@ -75,7 +75,7 @@
                                 <div id="circle-progress-01" class="circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="25" data-type="percent"></div>
                                 <i class="ri-star-fill m-0 text-warning"></i>
                             </div>
-                            <h5 class="mb-1">Theme development</h5>
+                            <h5 class="mb-1">Theme development <a href="/cards"></a></h5>
                             <p class="mb-3">Preparing framework of block-based WordPress Theme.</p>
                             <div class="d-flex align-items-center justify-content-between pt-3 border-top">
                                 <div class="iq-media-group">
