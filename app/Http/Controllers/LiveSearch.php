@@ -104,4 +104,63 @@ class LiveSearch extends Controller
             echo json_encode($data);
         }
     }
+
+    function action_proj (request $request)
+    {
+        if($request -> ajax()) {
+            $output = '';
+            $query = $request -> get ('query');
+            $total_row = 0;
+
+            if($query != '') 
+            {
+
+                $data_proj = DB::table('project')
+                        -> where ('name','like','%' . $query.'%')
+                        -> orwhere ('company','like','%' . $query.'%')
+                        -> orderby ('name','asc')
+                        -> get ();
+
+                $total_row = $data_proj -> count();
+            }
+            
+            
+            if ($total_row > 0)
+            {
+                if ($data_proj -> count() >0){
+                    $output .= '<h3>Projects:</h3>';
+                    foreach ($data_proj as $row)
+                    {
+                        $output .= '
+                        <tr>
+                            <td> '.$row->name.' </td>
+                            <td> '.$row->description.' </td>
+                        </tr>
+                        ';
+                    }
+                }
+
+
+                   
+            }
+            else
+            {
+                if($query != '')
+                {
+                    $output = '
+                    <tr>
+                        <td align="center" colspan="5"> No Data Found</td>
+                    </tr>
+                    ';
+                }
+            }
+
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row
+            );
+
+            echo json_encode($data);
+        }
+    }
 }

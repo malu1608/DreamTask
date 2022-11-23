@@ -32,8 +32,9 @@
   <body>
     <main>
       <header>
-        <h1><a href="{{ url('/home') }}"> DreamTask</a></h1>
+        
         @if (Auth::check())
+        <h1><a href="{{ url('/homeauthenticated') }}"> DreamTask</a></h1>
         <h1>
           <a id=notificationsDropdownAnchor>
 
@@ -56,6 +57,7 @@
 
       @endif
       @if (!Auth::check()) 
+      <h1><a href="{{ url('/home') }}"> DreamTask</a></h1>
       <h1 style="font-size: 25px;" > <a href="{{ url('/login') }}"> Log In  </a> </h1>
       <h1><a class="button" href="{{ url('/register') }}"> Sign Up </a></h1> 
       @endif

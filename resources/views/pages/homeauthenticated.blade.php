@@ -10,21 +10,48 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
-                            <h5>Your Projects</h5>
-                            <div id= "navbar">
-          
-                                <div class="searchcontainer">
-                                    <div class="wrap">
-                                        <div class="search">
-                                        
-                                            <input type="text" placeholder="Search..">
-                                            <button type="submit"> <i class="fa fa-search"></i>
-                                            </button>
+                            <h3>Your Projects</h>
+                            <div class="navbar">      
+                                <div class="container box ">
+                                    <div class="panel-body ">
+                                        <div class="form-group">
+                                            <input type="text" name="search" id="search" class="form-control" placeholder="Search projects..." />
                                         </div>
-                                    </div>
+                                        <div class="table-responsive" >
+                                            <table class="table table-striped ">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>    
                                 </div>
-                    
                             </div>
+                            <script>
+$(document).ready(function(){
+
+ fetch_customer_data();
+
+ function fetch_customer_data(query = '')
+ {
+  $.ajax({
+   url:"{{ route('live_search.action_proj') }}",
+   method:'GET',
+   data:{query:query},
+   dataType:'json',
+   success:function(data)
+   {
+    $('tbody').html(data.table_data);
+    $('#total_records').text(data.total_data);
+   }
+  })
+ }
+
+ $(document).on('keyup', '#search', function(){
+  var query = $(this).val();
+  fetch_customer_data(query);
+ });
+});
+</script>
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="dropdown status-dropdown mr-3">
                                     <div class="dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown">

@@ -55,6 +55,7 @@ Route::get('/admin/users/{id}/edit', 'AdminController@editUser');
 // Search Bar
 Route::get('live_search', 'LiveSearch@index');
 Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.action');
+Route::get('live_search/action_proj', 'LiveSearch@action_proj') -> name('live_search.action_proj');
 
 // User information
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
