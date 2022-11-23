@@ -15,6 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/aboutpage.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/contactus.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homeaupage.css') }}" rel="stylesheet">
     <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
