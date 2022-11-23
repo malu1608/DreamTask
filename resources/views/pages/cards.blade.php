@@ -3,23 +3,29 @@
 @section('title', 'Cards')
 
 @section('content')
-
-<div class="navbar">      
-  <div class="container box ">
-    <div class="panel-body ">
-     <div class="form-group">
-      <input type="text" name="search" id="search" class="form-control" placeholder="Search projects,tasks and teams.." />
-     </div>
-     <div class="table-responsive" >
-      <table class="table table-striped ">
-       <tbody>
-       </tbody>
-      </table>
-     </div>
-    </div>    
-  </div>
-</div>
-
+<div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
+                            <h5>Your Tasks</h5>
+                            <div id= "navbar">
+          
+                                <div class="searchcontainer">
+                                    <div class="wrap">
+                                        <div class="search">
+                                        
+                                            <input type="text" placeholder="Search..">
+                                            <button type="submit"> <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 <script>
 $(document).ready(function(){
 
@@ -48,7 +54,7 @@ $(document).ready(function(){
 </script>
 
 <div class="taskboardbar">
-
+  <div>
   <span onclick="openNav()">&#9776; open project information
   <script>
   function openNav() {
@@ -59,11 +65,12 @@ $(document).ready(function(){
     document.getElementById("mySidenav").style.width = "0";
   }
   </script>
+  
     <div class="texttk">Task Board </div>
     <hr>
   
 </div>
-
+</div>
   </span>
     
 

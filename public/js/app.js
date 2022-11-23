@@ -88,7 +88,8 @@ function itemUpdatedHandler() {
 }
 
 function itemAddedHandler() {
-  if (this.status != 200) window.location = '/';
+  //if (this.status != 200) window.location = '/';
+
   let item = JSON.parse(this.responseText);
 
   // Create the new item
