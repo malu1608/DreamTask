@@ -10099,7 +10099,7 @@ body.tab-horizontal .iq-footer {
     transition: all 0.3s ease-in-out; } }
 
 .table {
-  border: 1px solid #E0E2DB;
+  border: 10px solid #E0E2DB;
   border-radius: 16px;
   overflow: hidden;
   color: #140F49; }
@@ -10137,7 +10137,6 @@ body.tab-horizontal .iq-footer {
   .table .ligth-body .list-action {
     justify-content: center; }
   .table td {
-    padding: 20px 20px !important;
     border: 0px;
     border-bottom: 1px solid #E0E2DB;
     color: #140F49; }
