@@ -9,8 +9,7 @@
         <div class="sloganBox">DreamTask 
         <p>Join you teammates , tools and tasks alltogether
          <p> Build better- together</p>  </p>
-        <input type="text" class="email-bar" placeholder="E-mail">
-        <button type="Sign-up" class="email-button">Sign up</button>
+        
         </div>
         <div class="sloganBox"><img src="icons/4380.jpg" alt="cloud" ></div>
 

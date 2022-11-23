@@ -4,54 +4,29 @@
 
 @section('content')
 
+
+
+
      <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
-                            <h3>Your Projects</h>
-                            <div class="navbar">      
-                                <div class="container box ">
-                                    <div class="panel-body ">
-                                        <div class="form-group">
-                                            <input type="text" name="search" id="search" class="form-control" placeholder="Search projects..." />
+                            <h5>Your Projects</h5>
+                            <section id= "navbar">
+                                <div class="searchcontainer">
+                                    <div class="wrap">
+                                        <div class="search">
+        
+                                            <input type="text" placeholder="Search..">
+                                            <button type="submit"> <i class="fa fa-search"></i>
+                                            </button>
                                         </div>
-                                        <div class="table-responsive" >
-                                            <table class="table table-striped ">
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>    
+                                    </div>
                                 </div>
-                            </div>
-                            <script>
-$(document).ready(function(){
-
- fetch_customer_data();
-
- function fetch_customer_data(query = '')
- {
-  $.ajax({
-   url:"{{ route('live_search.action_proj') }}",
-   method:'GET',
-   data:{query:query},
-   dataType:'json',
-   success:function(data)
-   {
-    $('tbody').html(data.table_data);
-    $('#total_records').text(data.total_data);
-   }
-  })
- }
-
- $(document).on('keyup', '#search', function(){
-  var query = $(this).val();
-  fetch_customer_data(query);
- });
-});
-</script>
+                    
+                            </section>
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
                                 <div class="dropdown status-dropdown mr-3">
                                     <div class="dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown">
@@ -63,7 +38,22 @@ $(document).ready(function(){
                                         <a class="dropdown-item" href="#"><i class="ri-file-copy-line mr-2"></i>Category</a> 
                                     </div>
                                 </div>
-                            
+                                <div class="list-grid-toggle d-flex align-items-center mr-3">
+                                    <div data-toggle-extra="tab" data-target-extra="#grid" class="active">
+                                        <div class="grid-icon mr-3">
+                                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div data-toggle-extra="tab" data-target-extra="#list">
+                                        <div class="grid-icon">
+                                            <svg  width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="pl-3 border-left btn-new">
                                     <a href="#" class="btn btn-primary" data-target="#new-project-modal" data-toggle="modal">New Project</a>
                                 </div>
