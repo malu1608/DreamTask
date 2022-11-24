@@ -189,7 +189,7 @@ At this point, the performance indexes that will have the greatest relevance for
 | Index attribute | id_project                                                                                                                                                                                        |
 | Index type      | B-tree                                                                                                                                                                                              |
 | Cardinality     | Medium                                                                                                                                                                                            |
-| Clustering      | Yes                                                                                                                                                                                              |
+| Clustering      | No                                                                                                                                                                                             |
 | Justification   | The 'Team' table is accessed frequently so that the user can know which project is associated with that team and what other information belongs to him. The hash type is most suitable in this case as it is exact match filtering. Of the possible indexes, the most relevant will be the one related to the id_project attribute since a project can have multiple teams and it is useful to know the relationship between the two tables often since the user wants to know where it is integrated. In this case, the expected and most likely update frequency is medium, with an average cardinality, so clustering is not taken into account. |
 ```sql
 CREATE INDEX id_project_team ON Team USING btree (id_project);
@@ -202,7 +202,7 @@ CREATE INDEX id_project_team ON Team USING btree (id_project);
 | Index attribute | creation_date                                                                                                                                                                                     |
 | Index type      | Hash                                                                                                                                                                                             |
 | Cardinality     | Medium                                                                                                                                                                                            |
-| Clustering      | Yes                                                                                                                                                                                             |
+| Clustering      | No                                                                                                                                                                                             |
 | Justification   | The 'Task' table is accessed very frequently and it is crucial that the user can filter by task dates with the creation_date attribute relative to it. The Hash type is most suitable in this case allowing for faster date range queries based on the creation date. In this case, the expected and most likely update frequency is average, so no clustering is considered. |
 ```sql
 CREATE INDEX creation_date_task ON Task USING hash (creation_date);
@@ -216,7 +216,7 @@ CREATE INDEX creation_date_task ON Task USING hash (creation_date);
 | Index attribute | task_status                                                                                                                                                                                  |
 | Index type      | Hash                                                                                                                                                                                              |
 | Cardinality     | Medium                                                                                                                                                                                            |
-| Clustering      | Yes                                                                                                                                                                                             |
+| Clustering      | No                                                                                                                                                                                            |
 | Justification   | The 'Task' table is accessed very frequently and it is crucial that the user can filter by task status with the task_status attribute, to fast info of current task states.The Hash type is most suitable in this case allowing for faster date range queries based on a status type. In this case, the expected and most likely update frequency is average, so no clustering is considered.|
 ```sql
 CREATE INDEX task_status_task ON Task USING hash (task_status);
