@@ -52,4 +52,12 @@ class User extends Authenticatable
     public function teams() {
         return $this->belongsToMany('App\Models\Team');
       }
+
+    /**
+     * User can be a team member.
+     */
+    public function team_member() {
+        return $this->belongsTo('App\Models\TeamMember');
+      }
+
 }
