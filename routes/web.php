@@ -51,6 +51,7 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('/admin/users', 'AdminController@showUsers')->name('show-admin-users');
 Route::get('/admin/users/{id}/remove', 'AdminController@removeUser');
 Route::get('/admin/users/{id}/edit', 'AdminController@editUser');
+Route::get('admin/profile/{id}', [AdminController::class,'showAdminProfile']);
 
 // Search Bar
 Route::get('live_search', 'LiveSearch@index');

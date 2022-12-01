@@ -31,10 +31,10 @@ class AdminController extends Controller
      *
      * @return Response
      */
-    public function deleteUser($id)
+    public function deleteUser($id_user)
     {
-        $user = User::findOrFail($id);
-        if (Amin::where('id_admin', '=', $request->user()->id_user)->count() > 0) {
+        $user = User::findOrFail($id_user);
+        if (Amin::where('id_admin', '=', $id_user)->count() > 0) {
             return redirect()->back()->withErrors("You can't delete an admin account.");
         }
         $user->delete();
@@ -47,21 +47,24 @@ class AdminController extends Controller
      * @return Response
      */
 
-    public function edit(int $id, Request $request)
+    public function edit(int $id_user, Request $req)
     {
-        Gate::authorize('edit',User::findOrFail($id));
+        Gate::authorize('edit',User::findOrFail($id_user));
 
-        $request->validate($this->validation());
-        $user = User::findOrFail($id);
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->description = $request->description;
+        $req->validate($this->validation());
+        $user = User::findOrFail($id_user);
+        $user->first_name = $req->first_name;
+        $user->last_name = $req->last_name;
+        $user->email = $req->email;
+        $user->description = $req->description;
         $user->save();
 
         return redirect()->back();
     }
 
+    /**
+     * Admin account validation
+     */
     protected function validation()
     {
         return [
@@ -71,6 +74,13 @@ class AdminController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:4|max:32',
         ];
+    }
+
+    public function showAdminProfile(int $id_user)
+    {
+        Gate::authorize('admin',User::class);
+        $user = UsersController::getUser($id_user);
+        return view('pages.admin.profile',['user' => $user]);
     }
 
 }

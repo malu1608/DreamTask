@@ -56,7 +56,7 @@ class User extends Authenticatable
     /**
      * User can be a team member.
      */
-    public function team_member() {
+    public function teamMember() {
         return $this->belongsTo('App\Models\TeamMember');
       }
 
