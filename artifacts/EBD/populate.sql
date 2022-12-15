@@ -1,11 +1,11 @@
 /*User*/
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER1', 'Rui', 'Silva', 'ruisilva@gmail.com', 'sou user1 e admin');
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER2', 'Armando', 'Pires', 'armandopires@gmail.com', 'sou user2');
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER3', 'Ana', 'Borges', 'anaborges@gmail.com', 'sou user3');
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER4', 'Joao', 'Pereira', 'joaopereira@gmail.com', 'sou user4');
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER5', 'Joana', 'Silva', 'joanasilva@gmail.com', 'sou user5');
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER6', 'Miguel', 'Oliveira', 'migueloliveira@gmail.com', 'sou user6 e admin');
-INSERT INTO "User" (username, first_name, last_name, email, description) VALUES ('USER7', 'Pedro', 'Sousa', 'pedrosousa@gmail.com', 'sou user7');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER1', 'Rui', 'Silva', 'ruisilva@gmail.com', 'sou user1 e admin','olalinda');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER2', 'Armando', 'Pires', 'armandopires@gmail.com', 'sou user2','1234');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER3', 'Ana', 'Borges', 'anaborges@gmail.com', 'sou user3','12345');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER4', 'Joao', 'Pereira', 'joaopereira@gmail.com', 'sou user4','123456');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER5', 'Joana', 'Silva', 'joanasilva@gmail.com', 'sou user5','1234567');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER6', 'Miguel', 'Oliveira', 'migueloliveira@gmail.com', 'sou user6 e admin','12345678');
+INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER7', 'Pedro', 'Sousa', 'pedrosousa@gmail.com', 'sou user7','123456789');
 
 /*Admin*/
 INSERT INTO Admin (id_admin) VALUES (1);

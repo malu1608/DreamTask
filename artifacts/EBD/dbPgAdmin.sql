@@ -1,4 +1,4 @@
-SET search_path TO lbaw2242;
+
 
 --TYPES
 
