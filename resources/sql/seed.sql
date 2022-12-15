@@ -1,8 +1,9 @@
-create schema if not exists lbaw2242;
+create schema if not EXISTS lbaw2242;
 
 
 
 --Drop tables
+
 DROP TABLE IF EXISTS Member_Project;
 DROP TABLE IF EXISTS Member_Notification;
 DROP TABLE IF EXISTS Notification;

@@ -77,7 +77,7 @@ Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessa
 Route::get('project/{id}/tasksCreate', [TasksController::class,'showTaskForm']);
 Route::post('tasksCreate', [TasksController::class,'create']);
 Route::get('/project/{id}/task/{task_id}', [TasksController::class,'showTask']);
-Route::post('/project/{id}/task/{task_id}/update', [TasksController::class,'updateTask'])
+Route::post('/project/{id}/task/{task_id}/update', [TasksController::class,'updateTask']);
 
 //Notification
 Route::post('notification/{id}/manager', [NotificationsController::class,'managerNotification']);
