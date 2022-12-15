@@ -88,7 +88,8 @@ function itemUpdatedHandler() {
 }
 
 function itemAddedHandler() {
-  if (this.status != 200) window.location = '/';
+  //if (this.status != 200) window.location = '/';
+
   let item = JSON.parse(this.responseText);
 
   // Create the new item
@@ -177,4 +178,13 @@ function createItem(item) {
   return new_item;
 }
 
+const viewNotifications = function() {
+  document.getElementById('notificationsDropdown').classList.toggle('notificationsDropdownHidden')
+}
+
 addEventListeners();
+
+const viewUsers = function() {
+  document.getElementById('usersDropdown').classList.toggle('usersDropdownHidden')
+  console.log("ola")
+}

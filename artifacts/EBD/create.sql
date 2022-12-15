@@ -30,6 +30,7 @@ CREATE TABLE "User" (
    first_name varchar(255) NOT NULL,
    last_name varchar(255) NOT NULL,
    email varchar(255) NOT NULL UNIQUE,
+   password varchar(255) NOT NULL UNIQUE,
    description TEXT,
    CONSTRAINT id_userPK PRIMARY KEY(id_user)
 );

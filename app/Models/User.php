@@ -17,8 +17,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $fillable = ['username',
+        'first_name', 'last_name', 'email', 'description',
     ];
 
     /**
@@ -36,4 +36,28 @@ class User extends Authenticatable
      public function cards() {
       return $this->hasMany('App\Models\Card');
     }
+
+    
+    /**
+     * User belongs to many projects.
+     */
+    public function projects() {
+        return $this->belongsToMany('App\Models\Project');
+      }
+
+
+     /**
+     * User belongs to many teams.
+     */
+    public function teams() {
+        return $this->belongsToMany('App\Models\Team');
+      }
+
+    /**
+     * User can be a team member.
+     */
+    public function teamMember() {
+        return $this->belongsTo('App\Models\TeamMember');
+      }
+
 }

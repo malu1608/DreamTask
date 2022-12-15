@@ -1,4 +1,5 @@
---Drop tables
+
+
 --Drop Types
 create schema if not EXISTS lbaw2242;
 
