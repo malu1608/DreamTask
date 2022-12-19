@@ -1,7 +1,7 @@
-
-
 --Drop Types
 create schema if not EXISTS lbaw2242;
+
+SET search_path TO lbaw2242;
 
 DROP TABLE IF EXISTS Member_Project;
 DROP TABLE IF EXISTS Member_Notification;
@@ -149,6 +149,131 @@ CREATE TABLE Member_Notification (
     CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_notificationFK FOREIGN KEY(id_notification) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE
 );
+--functions 
+
+CREATE OR REPLACE FUNCTION user_comment() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        IF NOT EXISTS (SELECT * FROM Member_team a INNER JOIN Task_Member b
+                        On a.id_user = b.id_user) THEN
+            RAISE EXCEPTION 'No permissions to make a comment';
+        END IF;
+        RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION verify_username() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        IF EXISTS (SELECT * FROM "User" WHERE NEW.username = username ) THEN
+            RAISE EXCEPTION 'Username Invalid';
+        END IF;
+        RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION verify_email() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        IF EXISTS (SELECT * FROM "User" WHERE NEW.email = email ) THEN
+            RAISE EXCEPTION 'Email Invalid';
+        END IF;
+        RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+/*CREATE FUNCTION exits_coordenator() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+        IF NOT EXISTS (SELECT * FROM Member_Team WHERE  is_coordinator) THEN
+            RAISE EXCEPTION 'A coordinator is missing from your team';
+        END IF;
+        RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;*/
+
+-- Add column to Project to store computed ts_vectors.
+ALTER TABLE Project
+ADD COLUMN tsvectors TSVECTOR;
+
+-- Create a function to automatically update ts_vectors.
+CREATE OR REPLACE FUNCTION project_search_update() RETURNS TRIGGER AS $$
+BEGIN
+ IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+         setweight(to_tsvector('english', NEW.name), 'A') ||
+         setweight(to_tsvector('english', NEW.description), 'B') ||
+         setweight(to_tsvector('english', NEW.company), 'C')
+        );
+ END IF;
+ IF TG_OP = 'UPDATE' THEN
+         IF (NEW.description <> OLD.description OR NEW.company <> OLD.company) THEN
+           NEW.tsvectors = (
+             setweight(to_tsvector('english', NEW.name), 'A') ||
+             setweight(to_tsvector('english', NEW.description), 'B') ||
+             setweight(to_tsvector('english', NEW.company), 'C')
+           );
+         END IF;
+ END IF;
+ RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+--Triggers 
+
+DROP TRIGGER IF EXISTS user_comment ON Comment;
+DROP TRIGGER IF EXISTS verify_username ON "User";
+DROP TRIGGER IF EXISTS verify_email ON "User";
+DROP TRIGGER IF EXISTS exits_coordenator ON Team;
+DROP TRIGGER IF EXISTS project_search_update ON Project;
+
+CREATE TRIGGER user_comment
+        BEFORE Insert ON Comment
+        FOR EACH ROW
+        EXECUTE PROCEDURE user_comment();
+
+CREATE TRIGGER verify_username
+        BEFORE INSERT OR UPDATE ON "User"
+        FOR EACH ROW
+        EXECUTE PROCEDURE verify_username();
+
+CREATE TRIGGER verify_email
+        BEFORE INSERT OR UPDATE ON "User"
+        FOR EACH ROW
+        EXECUTE PROCEDURE verify_email();
+
+/*CREATE TRIGGER exits_coordenator
+        BEFORE INSERT OR UPDATE ON Team
+        FOR EACH ROW
+        EXECUTE PROCEDURE exits_coordenator();*/
+
+CREATE TRIGGER project_search_update
+        BEFORE INSERT OR UPDATE ON Project
+        FOR EACH ROW
+        EXECUTE PROCEDURE project_search_update();
+
+--Indexs
+
+DROP INDEX IF EXISTS id_project_team;
+DROP INDEX IF EXISTS creation_date_task;
+DROP INDEX IF EXISTS task_status_task;
+DROP INDEX IF EXISTS id_user_comment;
+DROP INDEX IF EXISTS search_idxproj;
+
+
+CREATE INDEX id_project_team ON Team USING btree (id_project);
+
+CREATE INDEX creation_date_task ON Task USING hash (creation_date);
+
+CREATE INDEX task_status_task ON Task USING hash (task_status);
+
+CREATE INDEX id_user_comment ON Comment USING hash (id_user);
+
+CREATE INDEX search_idxproj ON Project USING GIN (tsvectors);
 
 
 /*User*/
