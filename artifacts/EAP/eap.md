@@ -1,5 +1,5 @@
 # DreamTask
-## EBD: Database Specification Component
+## EAP: Database Specification Component
 
 The purpose of this project is to develop a web application called DreamTask, which is a project management system that will be developed by a small software company, mainly to  define and organize all possible tasks or goals to be achieved individually or as a team.
 
