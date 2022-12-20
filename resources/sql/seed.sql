@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS Team;
 DROP TABLE IF EXISTS Project;
 DROP TABLE IF EXISTS Team_member;
 DROP TABLE IF EXISTS Admin;
-DROP TABLE IF EXISTS "User";
+DROP TABLE IF EXISTS users;
 DROP TYPE IF EXISTS Notification_Type CASCADE;
 DROP TYPE IF EXISTS Status CASCADE;
 
@@ -25,7 +25,7 @@ CREATE TYPE Status AS ENUM ('To Do','In Progress','Done');
 
 --Tables
 
-CREATE TABLE "User" (
+CREATE TABLE users (
    id_user SERIAL,
    username varchar(255) NOT NULL UNIQUE,
    first_name varchar(255) NOT NULL,
@@ -37,12 +37,12 @@ CREATE TABLE "User" (
 );
 
 CREATE TABLE Admin (
-    id_admin INTEGER REFERENCES "User" (id_user) ON DELETE CASCADE ON UPDATE CASCADE,
+    id_admin INTEGER REFERENCES users (id_user) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_adminPK PRIMARY KEY(id_admin)
 );
 
 CREATE TABLE Team_Member (
-    id_user INTEGER REFERENCES "User" (id_user) ON UPDATE CASCADE,
+    id_user INTEGER REFERENCES users (id_user) ON UPDATE CASCADE,
     position varchar(255) NOT NULL,
     CONSTRAINT team_memberPK PRIMARY KEY(id_user)
 );
@@ -63,7 +63,7 @@ CREATE TABLE Member_Project (
     id_user INTEGER,
     CONSTRAINT member_projectPK PRIMARY KEY(id_project, id_user),
     CONSTRAINT id_projectFK FOREIGN KEY(id_project) REFERENCES Project ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -81,7 +81,7 @@ CREATE TABLE Member_Team (
     id_team INTEGER,
     is_coordinator BOOLEAN NOT NULL DEFAULT False,
     CONSTRAINT member_teamPK PRIMARY KEY(id_user, id_team),
-    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -105,7 +105,7 @@ CREATE TABLE Task_Member (
     id_user INTEGER,
     id_task INTEGER,
     CONSTRAINT task_memeberPK PRIMARY KEY(id_user, id_task),
-    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -119,7 +119,7 @@ CREATE TABLE Comment (
     id_team INTEGER,
 	comment INTEGER,
 	CONSTRAINT id_commentPK PRIMARY KEY(id_comment),
-    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_taskFK FOREIGN KEY(id_task) REFERENCES Task ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_teamFK FOREIGN KEY(id_team) REFERENCES Team ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT id_commentFK FOREIGN KEY(id_comment) REFERENCES Comment ON DELETE CASCADE ON UPDATE CASCADE,
@@ -146,7 +146,7 @@ CREATE TABLE Member_Notification (
     id_notification INTEGER,
 	is_favorite BOOLEAN NOT NULL DEFAULT False,
     CONSTRAINT member_notificationPK PRIMARY KEY(id_user, id_notification),
-    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES "User" ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT id_userFK FOREIGN KEY(id_user) REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT id_notificationFK FOREIGN KEY(id_notification) REFERENCES Notification ON DELETE CASCADE ON UPDATE CASCADE
 );
 --functions 
@@ -166,7 +166,7 @@ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION verify_username() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-        IF EXISTS (SELECT * FROM "User" WHERE NEW.username = username ) THEN
+        IF EXISTS (SELECT * FROM users WHERE NEW.username = username ) THEN
             RAISE EXCEPTION 'Username Invalid';
         END IF;
         RETURN NEW;
@@ -177,7 +177,7 @@ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION verify_email() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-        IF EXISTS (SELECT * FROM "User" WHERE NEW.email = email ) THEN
+        IF EXISTS (SELECT * FROM users WHERE NEW.email = email ) THEN
             RAISE EXCEPTION 'Email Invalid';
         END IF;
         RETURN NEW;
@@ -226,8 +226,8 @@ LANGUAGE plpgsql;
 --Triggers 
 
 DROP TRIGGER IF EXISTS user_comment ON Comment;
-DROP TRIGGER IF EXISTS verify_username ON "User";
-DROP TRIGGER IF EXISTS verify_email ON "User";
+DROP TRIGGER IF EXISTS verify_username ON users;
+DROP TRIGGER IF EXISTS verify_email ON users;
 DROP TRIGGER IF EXISTS exits_coordenator ON Team;
 DROP TRIGGER IF EXISTS project_search_update ON Project;
 
@@ -237,12 +237,12 @@ CREATE TRIGGER user_comment
         EXECUTE PROCEDURE user_comment();
 
 CREATE TRIGGER verify_username
-        BEFORE INSERT OR UPDATE ON "User"
+        BEFORE INSERT OR UPDATE ON users
         FOR EACH ROW
         EXECUTE PROCEDURE verify_username();
 
 CREATE TRIGGER verify_email
-        BEFORE INSERT OR UPDATE ON "User"
+        BEFORE INSERT OR UPDATE ON users
         FOR EACH ROW
         EXECUTE PROCEDURE verify_email();
 
@@ -277,13 +277,13 @@ CREATE INDEX search_idxproj ON Project USING GIN (tsvectors);
 
 
 /*User*/
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER1', 'Rui', 'Silva', 'ruisilva@gmail.com', 'sou user1 e admin','olalinda');
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER2', 'Armando', 'Pires', 'armandopires@gmail.com', 'sou user2','1234');
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER3', 'Ana', 'Borges', 'anaborges@gmail.com', 'sou user3','12345');
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER4', 'Joao', 'Pereira', 'joaopereira@gmail.com', 'sou user4','123456');
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER5', 'Joana', 'Silva', 'joanasilva@gmail.com', 'sou user5','1234567');
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER6', 'Miguel', 'Oliveira', 'migueloliveira@gmail.com', 'sou user6 e admin','12345678');
-INSERT INTO "User" (username, first_name, last_name, email, description,password) VALUES ('USER7', 'Pedro', 'Sousa', 'pedrosousa@gmail.com', 'sou user7','123456789');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER1', 'Rui', 'Silva', 'ruisilva@gmail.com', 'sou user1 e admin','olalinda');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER2', 'Armando', 'Pires', 'armandopires@gmail.com', 'sou user2','1234');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER3', 'Ana', 'Borges', 'anaborges@gmail.com', 'sou user3','12345');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER4', 'Joao', 'Pereira', 'joaopereira@gmail.com', 'sou user4','123456');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER5', 'Joana', 'Silva', 'joanasilva@gmail.com', 'sou user5','1234567');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER6', 'Miguel', 'Oliveira', 'migueloliveira@gmail.com', 'sou user6 e admin','12345678');
+INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER7', 'Pedro', 'Sousa', 'pedrosousa@gmail.com', 'sou user7','123456789');
 
 /*Admin*/
 INSERT INTO Admin (id_admin) VALUES (1);
