@@ -18,7 +18,7 @@
                 <span class="faq-plus">&plus;</span>
               </h3>
               <div class="faq-body">
-                DreamTask allows the users to have control of all their workflow by controlling and planning their activities and by helping to build the right line-up in order to assemble the perfect project.
+                DreamTask is an app that allows the users to have control of all their workflow by controlling and planning their activities and by helping to build the right line-up in order to assemble the perfect project. The users can have their own teams and projects so that they can do their work by collaborating with their workmates.
               </div>
             </div>
             <hr class="linhafaq">
