@@ -11,6 +11,8 @@ class User extends Authenticatable
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
+    protected $primaryKey = 'id_user';
+    public $table = 'users';
 
     protected $redirectTo = '/';
     /**
@@ -18,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['username', 'first_name', 'last_name', 'email', 'description'];
+    protected $fillable = ['username', 'first_name', 'last_name', 'email', 'description', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -26,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 'remember_token',
     ];
 
     
