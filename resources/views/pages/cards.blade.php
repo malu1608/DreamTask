@@ -73,7 +73,7 @@
     <a href="#">Team Forum</a>
     </div>
   <section id="cards">
-  @each('partials.card', $cards, 'card')
+  {{$tasks}}
   <article class="card">
     <form class="new_card">
       <input class="newitembar" type="text" name="name" placeholder="new card">

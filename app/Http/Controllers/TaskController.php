@@ -6,46 +6,49 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Card;
+use App\Models\Team;
+use App\Models\Task;
 
-class CardController extends Controller
+class TaskController extends Controller
 {
     /**
-     * Shows the card for a given id.
+     * Shows the task for a given id.
      *
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function showTask($id)
     {
-      $card = Card::find($id);
-      $this->authorize('show', $card);
-      return view('pages.card', ['card' => $card]);
+      $task = Task::find($id);
+      $this->authorize('show', $task);
+      return view('pages.task', ['task' => $task]);
     }
 
     /**
-     * Shows all cards.
+     * Shows all tasks.
      *
      * @return Response
      */
-    public function list()
+    public function showTasks($id)
     {
       if (!Auth::check()) return redirect('/login');
-      $this->authorize('list', Card::class);
-      $cards = Auth::user()->cards()->orderBy('id')->get();
-      return view('pages.cards', ['cards' => $cards]);
+      //$this->authorize('list', Task::class);
+      $tasks = Task::where('task.id_team', $id)->get();
+      //Team::find($id)->tasks()->orderBy('id_task')->get();
+      //return $tasks;
+      return view('pages.cards', ['tasks' => $tasks]);
     }
 
     /**
-     * Creates a new card.
+     * Creates a new task.
      *
-     * @return Card The card created.
+     * @return Card The task created.
      */
     public function create(Request $request)
     {
-      $card = new Card();
+      $task = new Task();
 
-      $this->authorize('create', $card);
+      $this->authorize('create', $task);
 
       $card->name = $request->input('name');
       $card->user_id = Auth::user()->id;

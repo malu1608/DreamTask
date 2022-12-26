@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
   public $timestamps  = false;
-
+  protected $primaryKey = 'id_task';
+  protected $table = 'task';
   /**
    * The attributes that are mass assignable.
    *
@@ -40,7 +41,7 @@ class Task extends Model
 
   public function team()
   {
-    return $this->belongsTo(Team::class);
+    return $this->belongsTo(Team::class,'id_team');
   }
 
 }

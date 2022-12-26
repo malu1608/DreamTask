@@ -6,7 +6,6 @@
 
 
 
-
      <div class="container-fluid">
      <div class="row">
             <div class="col-lg-12">
@@ -31,32 +30,6 @@
                             </section>
 
                             <div class="d-flex flex-wrap align-items-center justify-content-between">
-                                <div class="dropdown status-dropdown mr-3">
-                                    <div class="dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown">
-                                    <div class="btn bg-body"><span class="h6">Status :</span> In Progress<i class="ri-arrow-down-s-line ml-2 mr-0"></i></div>
-                                    </div>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton03">
-                                        <a class="dropdown-item" href="#"><i class="ri-mic-line mr-2"></i>In Progress</a>
-                                        <a class="dropdown-item" href="#"><i class="ri-attachment-line mr-2"></i>Priority</a>
-                                        <a class="dropdown-item" href="#"><i class="ri-file-copy-line mr-2"></i>Category</a> 
-                                    </div>
-                                </div>
-                                <div class="list-grid-toggle d-flex align-items-center mr-3">
-                                    <div data-toggle-extra="tab" data-target-extra="#grid" class="active">
-                                        <div class="grid-icon mr-3">
-                                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div data-toggle-extra="tab" data-target-extra="#list">
-                                        <div class="grid-icon">
-                                            <svg  width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="pl-3 border-left btn-new">
                                     <a href="#" class="btn btn-primary" data-target="#new-project-modal" data-toggle="modal">New Project</a>
                                 </div>
