@@ -1,10 +1,10 @@
-<article class="card" data-id="{{ $card->id }}">
+<article class="card">
 <header>
-  <h2><a href="/cards/{{ $card->id }}">{{ $card->name }}</a></h2>
+  <h2>{{$title}}</h2>
   <a href="#" class="delete">&#10761;</a>
 </header>
 <ul>
-  @each('partials.item', $card->items()->orderBy('id')->get(), 'item')
+  @each('partials.task', $tasks, 'task')
 </ul>
 <form class="new_item">
   <input type="text" name="description" placeholder="new item">

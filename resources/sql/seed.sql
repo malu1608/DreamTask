@@ -21,7 +21,7 @@ DROP TYPE IF EXISTS Status CASCADE;
 --TYPES
 
 CREATE TYPE Notification_Type AS ENUM ('Comment','Task','Project');
-CREATE TYPE Status AS ENUM ('To Do','In Progress','Done');
+CREATE TYPE Status AS ENUM ('To Do','In Progress','Completed');
 
 --Tables
 

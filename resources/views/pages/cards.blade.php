@@ -73,12 +73,9 @@
     <a href="#">Team Forum</a>
     </div>
   <section id="cards">
-  {{$tasks}}
-  <article class="card">
-    <form class="new_card">
-      <input class="newitembar" type="text" name="name" placeholder="new card">
-    </form>
-  </article>
+    <?php echo view('partials.card', ['tasks' => $tasksToDo, 'title' => 'To Do']); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksInProgress, 'title' => 'In Progress']); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksCompleted, 'title' => 'Completed']); ?>
 </section>
 </div>
 </div> 

@@ -33,10 +33,13 @@ class TaskController extends Controller
     {
       if (!Auth::check()) return redirect('/login');
       //$this->authorize('list', Task::class);
-      $tasks = Task::where('task.id_team', $id)->get();
+      $tasksToDo = Task::where('task.id_team', $id)->where('task.task_status', 'To Do')->get();
+      $tasksInProgress = Task::where('task.id_team', $id)->where('task.task_status', 'In Progress')->get();
+      $tasksCompleted = Task::where('task.id_team', $id)->where('task.task_status', 'Completed')->get();
       //Team::find($id)->tasks()->orderBy('id_task')->get();
       //return $tasks;
-      return view('pages.cards', ['tasks' => $tasks]);
+      return view('pages.cards', ['tasksToDo' => $tasksToDo, 'tasksInProgress' => $tasksInProgress, 'tasksCompleted' => $tasksCompleted]);
+    
     }
 
     /**
