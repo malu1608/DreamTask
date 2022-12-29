@@ -63,6 +63,11 @@ Route::get('live_search/action_task', 'LiveSearch@action_task') -> name('live_se
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('profile/edit_validation', [ProfileController::class, 'edit_validation'])->name('profile.edit_validation');
 
+Route::get('/profile/{id_user}', [UserController::class,'showUserProfile']);
+Route::get('/profile/{id_user}/view', [UserController::class,'showViewUserProfile']);
+Route::post('/profile/{id_user}/updateUser', [UserController::class,'updateUserById']);
+Route::post('/profile/{id_user}/deleteProfile', [UserController::class,'deleteUserProfile']);
+
 
 // Projects
 Route::get('projects', 'ProjectsController@showProjects');
