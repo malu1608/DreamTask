@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Team;
 use App\Models\Task;
 
 class TaskController extends Controller
 {
+
+    protected function validation()
+    {
+        return  [
+          'title' => ['required','string'],
+          'description' => ['required','string'],
+        ];
+    }
     /**
      * Shows the task for a given id.
      *
@@ -36,6 +45,7 @@ class TaskController extends Controller
       $tasksToDo = Task::where('task.id_team', $id)->where('task.task_status', 'To Do')->get();
       $tasksInProgress = Task::where('task.id_team', $id)->where('task.task_status', 'In Progress')->get();
       $tasksCompleted = Task::where('task.id_team', $id)->where('task.task_status', 'Completed')->get();
+
       //Team::find($id)->tasks()->orderBy('id_task')->get();
       //return $tasks;
       return view('pages.cards', ['tasksToDo' => $tasksToDo, 'tasksInProgress' => $tasksInProgress, 'tasksCompleted' => $tasksCompleted]);
@@ -60,13 +70,17 @@ class TaskController extends Controller
       return $card;
     }
 
-    public function delete(Request $request, $id)
+    public function updateTask(int $id, Request $request)
     {
-      $card = Card::find($id);
-
-      $this->authorize('delete', $card);
-      $card->delete();
-
-      return $card;
+      Gate::authorize('update',Task::find($id));
+      
+      if($request->input('action') == 'deltask'){
+        $task = Task::find($id);
+        $task->delete();
+      }
+      
+      
+      return response()->json(['success'=>'User Deleted Successfully!']);
     }
+   
 }

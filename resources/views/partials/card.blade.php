@@ -1,7 +1,6 @@
 <article class="card">
 <header>
   <h2>{{$title}}</h2>
-  <a href="#" class="delete">&#10761;</a>
 </header>
 <ul>
   @each('partials.task', $tasks, 'task')

@@ -29,9 +29,12 @@ Route::get('/faq', function() {
 Route::get('/homeauthenticated', function() {
     return view('pages.homeauthenticated');
 });
+Route::get('/newproject', function() {
+    return view('pages.newproject');
+});
 // Cards
 
-/** */
+/* */
 Route::get('tasks', 'TaskController@showTasks');
 Route::get('cards/{id}', 'TaskController@show');
 
@@ -67,11 +70,15 @@ Route::post('profile/edit_validation', [ProfileController::class, 'edit_validati
 
 
 // Projects
-Route::get('projects', 'ProjectsController@showProjects');
+
 Route::get('create_project', 'ProjectsController@projectForm');
 Route::post('create_project', 'ProjectsController@createProject');
 
+Route::get('projects/team/{id}', 'ProjectsController@showProjects')->where('id', '[0-9]+');;
 Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '[0-9]+');
+Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
+
+
 Route::get('project/{id}/forum', [ProjectForumController::class,'show']);
 Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessage']);
 
