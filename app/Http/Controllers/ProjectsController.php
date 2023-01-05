@@ -44,30 +44,36 @@ class ProjectsController extends Controller
 
         return redirect("/projects");
     }
-
-    public function showProject($id) {
+ /*
+    public function showProjectsLists($id){
+        if (!Auth::check()) return redirect('/login');
+        $projectToDo = Project::where('project.id_project', $id)->where('project.project_status', 'To Do')->get();
+        //echo $projectToDo;
+        $projectInProgress = Project::where('project.id_project', $id)->where('project.project_status', 'In Progress')->get();
+        //echo $projectInProgress;
+        $projectCompleted = Project::where('project.id_project', $id)->where('project.project_status', 'Completed')->get();
+        //echo $projectCompleted;
+        //$project_members = ProjectMember::where('id_user','=',Auth::id())->pluck('id_project');
+        //$projects = Project::whereIn('id_project', $project_members->id_project);
+        return view('pages.homeauthenticated', ['projectToDo' => $projectToDo, 'projectInProgress' => $projectInProgress, 'projectCompleted' => $projectCompleted]);
         
-        //Gate::authorize('show',$project);
-        $project = Project::find($id);
-        return $project;
-        /*
+       
         $teams = Team::whereIn('id_project', $id_project)->get();
         $members = ProjectMember::whereIn('id_project', $id_project)->get();
         $teams = array($teams);
         $members = array($members);
-         */
-        return view('pages.homeauthenticated',['project' => $project]);
+         
+        
     }
-
-    public function showProjects($id)
+*/
+    public function showAllProjects()
     {
         if (!Auth::check()) return redirect('/login');
-        $projectToDo = Project::where('project.id_project', $id)->where('project.project_status', 'To Do')->get();
-        $projectInProgress = Project::where('project.id_project', $id)->where('project.project_status', 'In Progress')->get();
-        $projectCompleted = Project::where('project.id_project', $id)->where('project.project_status', 'Completed')->get();
-        //$project_members = ProjectMember::where('id_user','=',Auth::id())->pluck('id_project');
-        //$projects = Project::whereIn('id_project', $project_members->id_project);
-        return view('pages.homeauthenticated', ['projectToDo' => $projectToDo, 'projectInProgress' => $projectInProgress, 'projectCompleted' => $projectCompleted]);
+        
+        $projects = Project::all()->sortByDesc('current_edit_date');
+        //echo $projects;
+        
+      return view('pages.homeauthenticated', ['projects' => $projects]);
     }
 
 }

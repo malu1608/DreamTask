@@ -16,15 +16,6 @@ use Illuminate\View\View;
 class AdminController extends Controller
 {
 
-    /**
-     * Display the specified resource for users
-     *
-     * @return Response
-     */
-    public function showUsers()
-    {
-        
-    }
 
     /**
      * Delete user by his id
@@ -79,8 +70,14 @@ class AdminController extends Controller
     public function showAdminProfile(int $id_user)
     {
         Gate::authorize('admin',User::class);
-        $user = UsersController::getUser($id_user);
+        $user = UserController::getUser($id_user);
         return view('pages.admin.profile',['user' => $user]);
     }
 
 }
+
+
+
+
+
+

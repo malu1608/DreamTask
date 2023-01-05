@@ -34,7 +34,7 @@ Route::get('/newproject', function() {
 });
 // Cards
 
-/* */
+
 Route::get('tasks', 'TaskController@showTasks');
 Route::get('cards/{id}', 'TaskController@show');
 
@@ -53,11 +53,11 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 //Admin
-Route::get('/admin/users', 'AdminController@showUsers')->name('show-admin-users');
+/*
 Route::get('/admin/users/{id}/remove', 'AdminController@removeUser');
 Route::get('/admin/users/{id}/edit', 'AdminController@editUser');
 Route::get('admin/profile/{id}', [AdminController::class,'showAdminProfile']);
-
+ */
 // Search Bar
 Route::get('live_search', 'LiveSearch@index');
 Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.action');
@@ -74,10 +74,12 @@ Route::post('profile/edit_validation', [ProfileController::class, 'edit_validati
 Route::get('create_project', 'ProjectsController@projectForm');
 Route::post('create_project', 'ProjectsController@createProject');
 
-Route::get('projects/team/{id}', 'ProjectsController@showProjects')->where('id', '[0-9]+');;
+//working
+Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
+//Route::get('projects/team/{id}', 'ProjectsController@showProjectsLists')->where('id', '[0-9]+');;
 Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '[0-9]+');
 Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
-
+Route::get('/admin/users', 'UserController@showAdminUsers')->name('showAdminUsers');
 
 Route::get('project/{id}/forum', [ProjectForumController::class,'show']);
 Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessage']);

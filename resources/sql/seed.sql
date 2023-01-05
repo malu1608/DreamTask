@@ -33,6 +33,7 @@ CREATE TABLE users (
    email varchar(255) NOT NULL UNIQUE,
    description TEXT,
    password varchar(255) NOT NULL,
+   is_admin boolean NOT NULL DEFAULT false,
    CONSTRAINT id_userPK PRIMARY KEY(id_user)
 );
 
@@ -277,13 +278,13 @@ CREATE INDEX search_idxproj ON Project USING GIN (tsvectors);
 
 
 /*User*/
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER1', 'Rui', 'Silva', 'ruisilva@gmail.com', 'sou user1 e admin','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER2', 'Armando', 'Pires', 'armandopires@gmail.com', 'sou user2','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER3', 'Ana', 'Borges', 'anaborges@gmail.com', 'sou user3','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER4', 'Joao', 'Pereira', 'joaopereira@gmail.com', 'sou user4','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER5', 'Joana', 'Silva', 'joanasilva@gmail.com', 'sou user5','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER6', 'Miguel', 'Oliveira', 'migueloliveira@gmail.com', 'sou user6 e admin','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
-INSERT INTO users (username, first_name, last_name, email, description,password) VALUES ('USER7', 'Pedro', 'Sousa', 'pedrosousa@gmail.com', 'sou user7','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a');
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER1', 'Rui', 'Silva', 'ruisilva@gmail.com', 'sou user1 e admin','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',true);
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER2', 'Armando', 'Pires', 'armandopires@gmail.com', 'sou user2','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',false);
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER3', 'Ana', 'Borges', 'anaborges@gmail.com', 'sou user3','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',false);
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER4', 'Joao', 'Pereira', 'joaopereira@gmail.com', 'sou user4','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',false);
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER5', 'Joana', 'Silva', 'joanasilva@gmail.com', 'sou user5','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',false);
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER6', 'Miguel', 'Oliveira', 'migueloliveira@gmail.com', 'sou user6 e admin','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',true);
+INSERT INTO users (username, first_name, last_name, email, description,password,is_admin) VALUES ('USER7', 'Pedro', 'Sousa', 'pedrosousa@gmail.com', 'sou user7','$2y$10$q763wmuN1R5E8YpuYrC3bOTgqTmYIGUIO9RC77IvHAMPDOMeNC99a',false);
 
 
 /*Admin*/

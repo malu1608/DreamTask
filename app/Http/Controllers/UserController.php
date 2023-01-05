@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     protected function validation(int $id_user)
     {
@@ -21,17 +21,19 @@ class UsersController extends Controller
         ];
     }
 
-    protected function passwordValidation()
+    public function showAdminUsers()
     {
-        return  [
-            'password' => 'string|required|min:4|confirmed'
-        ];
+      if (!Auth::check()) return redirect('/login');
+      else if(!Auth::user()->is_admin) return redirect ('/');
+      //echo "oi";
+      $user = Auth::user();
+      //echo $user;
+      $users = User::get();
+      //echo $users;
+      return view('pages.showUsers', ['user' => $user, 'users' => $users]);
     }
 
-    static function getUserById(int $id_user)
-    {
-        return  User::find($id_user);
-    }
+
 
     public function showUserProfile(int $id_user)
     {

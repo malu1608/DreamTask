@@ -23,23 +23,9 @@
                                        <a class="dropdown-item" href="#"><i class="ri-file-copy-line mr-2"></i>Category</a> 
                                    </div>
                                </div>
-                               <div class="list-grid-toggle d-flex align-items-center mr-3">
-                                   <div data-toggle-extra="tab" data-target-extra="#grid" class="active">
-                                       <div class="grid-icon mr-3">
-                                           <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                               <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
-                                           </svg>
-                                       </div>
-                                   </div>
-                                   <div data-toggle-extra="tab" data-target-extra="#list">
-                                       <div class="grid-icon">
-                                           <svg  width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                               <line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line>
-                                           </svg>
-                                       </div>
-                                   </div>
-                               </div>
+                             
                                <div class="pl-3 border-left btn-new">
+                                    
                                    <a href="#" class="btn btn-primary" data-target="#new-project-modal" data-toggle="modal">New Project</a>
                                </div>
                            </div>
@@ -48,16 +34,18 @@
                </div>
            </div>
        </div>
+
        <div id="grid" class="item-content animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
-           <div class="row">
+        @foreach ($projects as $project)
+           
                <div class="col-lg-4 col-md-6">
                    <div class="card card-block card-stretch card-height">
                        <div class="card-body">
-                            <section id="cards">
-                                <?php echo view('partials.card_proj', ['projects' => $projectToDo, 'project_status' => 'To Do']); ?>
-                                <?php echo view('partials.card_proj', ['projects' => $projectInProgress, 'project_status' => 'In Progress']); ?>
-                                <?php echo view('partials.card_proj', ['projects' => $projectCompleted, 'project_status' => 'Completed']); ?>
-                            </section>
+                            <h5 class="mb-1">{{$project->name}}</h5>
+                                
+                                {{$project->description}}
+                                <br>{{$project->company}}
+                                                
                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
                                <div class="iq-media-group">
                                    <a href="#" class="iq-media">
@@ -67,301 +55,13 @@
                                        <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
                                    </a>
                                </div>
-                               <a class="btn btn-white text-primary link-shadow">High</a>
+                               <a class="btn btn-white text-primary link-shadow">{{$project->current_edit_date}}</a>
                            </div>
                        </div>
                    </div>
+                   
                </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-02" class="circle-progress circle-progress-secondary" data-min-value="0" data-max-value="100" data-value="30" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Vuetify Dashboard in Admin</h5>
-                           <p class="mb-3">Start development server and check Vue project in browser.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/07.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/02.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/04.jpg" alt="">
-                                   </a>                                                
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/08.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-secondary link-shadow">Medium</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-03" class="circle-progress circle-progress-warning" data-min-value="0" data-max-value="100" data-value="15" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Wordpress Dashboard Plugins</h5>
-                           <p class="mb-3">Customize your WordPress with smart WordPress plugins.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/01.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/02.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/03.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-warning link-shadow">Low</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-04" class="circle-progress circle-progress-success" data-min-value="0" data-max-value="100" data-value="40" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Hotel Management App</h5>
-                           <p class="mb-3">Build a Cloud-based Hotel Management Theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/07.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-success link-shadow">High</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-05" class="circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="25" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Video Streaming Theme</h5>
-                           <p class="mb-3">Launch OTT and media streaming theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-primary link-shadow">High</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-06" class="circle-progress circle-progress-secondary" data-min-value="0" data-max-value="100" data-value="30" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Medical Clinic Theme</h5>
-                           <p class="mb-3">Hospital and private clinic doctor's theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/07.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/02.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/04.jpg" alt="">
-                                   </a>                                                
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/08.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-secondary link-shadow">Medium</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-07" class="circle-progress circle-progress-warning" data-min-value="0" data-max-value="100" data-value="15" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Social Media Dashboard</h5>
-                           <p class="mb-3">Leverage data with Social Media Dashboard.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/01.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/02.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/03.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-warning link-shadow">Low</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-08" class="circle-progress circle-progress-success" data-min-value="0" data-max-value="100" data-value="40" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Cloud Service Theme</h5>
-                           <p class="mb-3">Exclusively for cloud-based/ Startup theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/07.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-success link-shadow">High</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-09" class="circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="25" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Automotive WordPress Theme</h5>
-                           <p class="mb-3">Dealership-based business WordPress theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-primary link-shadow">High</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-10" class="circle-progress circle-progress-secondary" data-min-value="0" data-max-value="100" data-value="30" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Online Education Template</h5>
-                           <p class="mb-3">Remote students and teachers dashboard.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/07.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/02.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/04.jpg" alt="">
-                                   </a>                                                
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/08.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-secondary link-shadow">Medium</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-11" class="circle-progress circle-progress-warning" data-min-value="0" data-max-value="100" data-value="15" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">Blog/Magazine Theme</h5>
-                           <p class="mb-3">Launch visually appealing Blog theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/01.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/02.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/03.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-warning link-shadow">Low</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-lg-4 col-md-6">
-                   <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                           <div class="d-flex align-items-center justify-content-between mb-4">
-                               <div id="circle-progress-12" class="circle-progress circle-progress-success" data-min-value="0" data-max-value="100" data-value="40" data-type="percent"></div>
-                               <i class="ri-star-fill m-0 text-warning"></i>
-                           </div>
-                           <h5 class="mb-1">XAMIN: AI Theme</h5>
-                           <p class="mb-3">Artificial Intelligence inspired WordPress theme.</p>
-                           <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                               <div class="iq-media-group">
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
-                                   </a>
-                                   <a href="#" class="iq-media">
-                                       <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/07.jpg" alt="">
-                                   </a>
-                               </div>
-                               <a class="btn btn-white text-success link-shadow">High</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
+           @endforeach
        </div>
    </div>
 
