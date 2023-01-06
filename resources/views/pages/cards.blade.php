@@ -71,9 +71,9 @@
     <a href="#">Team Forum</a>
     </div>
   <section id="cards">
-    <?php echo view('partials.card', ['tasks' => $tasksToDo, 'title' => 'To Do']); ?>
-    <?php echo view('partials.card', ['tasks' => $tasksInProgress, 'title' => 'In Progress']); ?>
-    <?php echo view('partials.card', ['tasks' => $tasksCompleted, 'title' => 'Completed']); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksToDo, 'title' => 'To Do', 'team_id' => $team_id]); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksInProgress, 'title' => 'In Progress', 'team_id' => $team_id]); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksCompleted, 'title' => 'Completed', 'team_id' => $team_id]); ?>
 </section>
 </div>
 </div> 

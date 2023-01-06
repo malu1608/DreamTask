@@ -21,6 +21,7 @@ class UserController extends Controller
         ];
     }
 
+    
     public function showAdminUsers()
     {
       if (!Auth::check()) return redirect('/login');
@@ -33,7 +34,13 @@ class UserController extends Controller
       return view('pages.showUsers', ['user' => $user, 'users' => $users]);
     }
 
-
+    public function show($id)
+    {
+      if (!Auth::check()) return redirect('/login');
+      $user = User::find($id);
+      $this->authorize('show', $user);
+      return view('pages.user', ['user' => $user]);
+    }
 
     public function showUserProfile(int $id_user)
     {
@@ -43,8 +50,7 @@ class UserController extends Controller
         } else if (Auth::id() !== $id_user) {
             return redirect('/admin/profile/'.$id_user);
         }
-        $notifications = NotificationsController::getNotifications(Auth::id());
-
+        
         $user = self::getUserById($id_user);
 
         return view('pages.editProfile', ['user' => $user]);

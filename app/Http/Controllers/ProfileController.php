@@ -60,13 +60,7 @@ class ProfileController extends Controller
         return redirect('profile')->with('success', 'Profile Data Updated');
 
     }
-    public function show($id)
-    {
-      if (!Auth::check()) return redirect('/login');
-      $user = User::find($id);
-      $this->authorize('show', $user);
-      return view('pages.user', ['user' => $user]);
-    }
+    
     protected function validator(array $data){
         return Validator::make($data, [
           'name' => 'nullable|string|max:255',

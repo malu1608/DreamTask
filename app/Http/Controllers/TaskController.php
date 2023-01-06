@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\Team;
 use App\Models\Task;
 
+use Validator;
+
 class TaskController extends Controller
 {
 
@@ -48,26 +50,40 @@ class TaskController extends Controller
 
       //Team::find($id)->tasks()->orderBy('id_task')->get();
       //return $tasks;
-      return view('pages.cards', ['tasksToDo' => $tasksToDo, 'tasksInProgress' => $tasksInProgress, 'tasksCompleted' => $tasksCompleted]);
+      return view('pages.cards', ['tasksToDo' => $tasksToDo, 'tasksInProgress' => $tasksInProgress, 'tasksCompleted' => $tasksCompleted, 'team_id' => $id]);
     
     }
 
     /**
      * Creates a new task.
      *
-     * @return Card The task created.
+     * @return Task The task created.
      */
     public function create(Request $request)
     {
+      $validator = Validator::make($request->all(), [ 
+        'title' => ['required','string'],
+        'description' => ['required','string'],
+        'task_status' => ['required','string'],
+        'id_team' => ['required','integer'],
+      ]);
+
+      if ($validator->fails()) {
+          return redirect()->back();
+      }
+
+
       $task = new Task();
 
-      $this->authorize('create', $task);
+      $task->title = $request['title'];
+      $task->description = $request['description'];
+      $task->creation_date = now();
+      $task->task_status = $request['task_status'];
+      $task->id_team = $request['id_team'];
 
-      $card->name = $request->input('name');
-      $card->user_id = Auth::user()->id;
-      $card->save();
+      $task->save();
 
-      return $card;
+      return redirect()->back();
     }
 
     public function updateTask(int $id, Request $request)

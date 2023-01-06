@@ -82,6 +82,7 @@ Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '
 Route::get('/admin/users', 'UserController@showAdminUsers')->name('showAdminUsers');
 Route::get('editProfile','ProfileController@showEdit')->name('editProfile');
 Route::post('editProfile', 'ProfileController@editProfile');
+Route::get('user/{id}', 'UserController@show');
 
 
 
@@ -90,7 +91,7 @@ Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessa
 
 //Task
 Route::get('project/{id}/tasksCreate', [TaskController::class,'showTaskForm']);
-Route::post('tasksCreate', [TaskController::class,'create']);
+Route::post('tasksCreate', 'TaskController@create');
 Route::get('/project/{id}/task/{task_id}', [TaskController::class,'showTask']);
 Route::post('/project/{id}/task/{task_id}/update', [TaskController::class,'updateTask']);
 
