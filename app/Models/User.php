@@ -62,4 +62,11 @@ class User extends Authenticatable
       
       return $this->first_name . " " . $this->last_name;
     }
+
+    public function isCoordinator($team_id) {
+      return TeamMember::where('member_team.id_user', '=', $this->id_user)
+                  ->where('member_team.id_team', '=', $team_id)
+                  ->where('member_team.is_coordinator', true)
+                  ->exists();
+    }
 }

@@ -4,9 +4,9 @@
 
 @section('content')
 
-    <h1>Your teams</h1>
+    <h1>{{ $project_name }}'s teams</h1>
 
-    <div style="height: 100%; background-color: white; display: flex; flex-direction: row; flex-wrap: wrap;">
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
 
         @foreach ($teams as $team)
             <div class="col-lg-4 col-md-6">
@@ -18,8 +18,16 @@
                         <div>{{ count($team->members()) }} members</div>
                         <ul>
                             @foreach ($team->members() as $member)
-                                <li>
+                                <li
+                                    style="display:flex; flex-direction: row; justify-content: space-between; align-items: center">
                                     {{ $member->first_name . ' ' . $member->last_name }}
+                                    @if (Auth::user()->isCoordinator($team->id_team) || Auth::user()->is_admin)
+                                        @if (Auth::user()->id_user != $member->id_user)
+                                            <form action="" method="post" style="margin: 0;">
+                                                <button type="submit">Remove</button>
+                                            </form>
+                                        @endif
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
