@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+use Validator;
 
 class ProjectsController extends Controller
 {
@@ -25,7 +26,7 @@ class ProjectsController extends Controller
         $teams = Team::where('team.id_project', '=', $id)->get();
         $project = Project::where('id_project', '=', $id)->first();
 
-        return view('pages.teams', ['teams' => $teams, 'project_name' => $project->name]);
+        return view('pages.teams', ['teams' => $teams, 'project' => $project]);
     }
 
 
@@ -79,6 +80,26 @@ class ProjectsController extends Controller
         //echo $projects;
         
       return view('pages.homeauthenticated', ['projects' => $projects]);
+    }
+
+    public function update($id, Request $request) {
+        if (!Auth::user()->is_admin) return redirect()->back();
+        $validator = Validator::make($request->all(), [ 
+            'description' => ['required','string'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back();
+        }
+
+        $proj = Project::find($id);
+
+        $proj->description = $request['description'];
+
+        $proj->save(); 
+
+        return redirect()->back();
+
     }
 
 }

@@ -4,7 +4,12 @@
 
 @section('content')
 
-    <h1>{{ $project_name }}'s teams</h1>
+    <h1>{{ $project->name }}'s teams</h1>
+    <form action="/project/{{ $project->id_project }}/info" method="post">
+        @csrf
+        <textarea name="description" id="" cols="30" rows="10"> {{ $project->description }}</textarea>
+        <button type="submit">Update</button>
+    </form>
 
     <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
 
