@@ -83,6 +83,8 @@ Route::post('create_project', 'ProjectsController@create');
 Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
 //Route::get('projects/team/{id}', 'ProjectsController@showProjectsLists')->where('id', '[0-9]+');
 Route::get('project/{id}', 'ProjectsController@show')->where('id', '[0-9]+');
+Route::post('project/{id}', 'TeamMemberController@removeMember');
+
 Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '[0-9]+');
 //Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
 Route::get('/admin/users', 'UserController@showAdminUsers')->name('showAdminUsers');

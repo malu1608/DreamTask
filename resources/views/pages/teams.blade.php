@@ -24,6 +24,11 @@
                                     @if (Auth::user()->isCoordinator($team->id_team) || Auth::user()->is_admin)
                                         @if (Auth::user()->id_user != $member->id_user)
                                             <form action="" method="post" style="margin: 0;">
+                                                @csrf
+                                                <input type="number" name="id_user" value="{{ $member->id_user }}"
+                                                    style="display: none;">
+                                                <input type="number" name="id_team" value="{{ $team->id_team }}"
+                                                    style="display: none;">
                                                 <button type="submit">Remove</button>
                                             </form>
                                         @endif
