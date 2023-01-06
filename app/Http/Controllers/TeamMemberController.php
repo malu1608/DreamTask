@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 use App\Models\TeamMember;
+use App\Models\Team;
 
 use Validator;
 
@@ -17,6 +18,37 @@ class TeamMemberController extends Controller
 {
     public function showTeams() {
         return 'WIP';
+    }
+
+    protected function validation()
+    {
+        return  [
+            'name' => 'required|string|max:64',
+            'field' => 'required|string|max:64',
+        ];
+    }
+
+    public function create($id, Request $request) {
+        $id_user = Auth::user()->id_user;
+        $validator = $request->validate($this->validation());
+
+        $team = new Team;
+
+        $team->name = $request->name;
+        $team->field = $request->field;
+        $team->id_project = $id;
+
+        $team->save();
+
+        $coordinator = new TeamMember;
+        
+        $coordinator->id_user = $id_user;
+        $coordinator->id_team = $team->id_team;
+        $coordinator->is_coordinator = True;
+
+        $coordinator->save();
+
+        return redirect("/project/team/" . $id . "/tasks");
     }
 
 

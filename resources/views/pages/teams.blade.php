@@ -3,17 +3,59 @@
 @section('title', 'Teams')
 
 @section('content')
+    <div class="row">
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                    <div style="display: flex; flex-direction: column;">
+                        <h1>{{ $project->name }}'s teams</h1>
+                        @if (Auth::user()->is_admin)
+                            <form action="/project/{{ $project->id_project }}/info" method="post">
+                                @csrf
+                                <textarea name="description" id="" cols="30" rows="10"> {{ $project->description }}</textarea>
+                                <button type="submit">Update</button>
+                            </form>
+                        @else
+                            {{ $project->description }}
+                        @endif
+                    </div>
+                    <div class="pl-3 border-left btn-new">
+                        <a href="#" class="btn btn-primary" onclick="toggleModal()">New Team</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="new-project-modal-back" class="hide"></div>
+    <div id="new-project-modal" class="hide">
+        <form action="/project/{{ $project->id_project }}/create_team" method="post">
+            {{ csrf_field() }}
 
-    <h1>{{ $project->name }}'s teams</h1>
-    @if (Auth::user()->is_admin)
-        <form action="/project/{{ $project->id_project }}/info" method="post">
-            @csrf
-            <textarea name="description" id="" cols="30" rows="10"> {{ $project->description }}</textarea>
-            <button type="submit">Update</button>
+            <h2>New Team</h2>
+
+            <label for="name">Team Name</label>
+            <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+            @if ($errors->has('name'))
+                <span class="error">
+                    {{ $errors->first('name') }}
+                </span>
+            @endif
+            <label for="field">Team Field</label>
+            <input id="field" type="text" name="field" value="{{ old('field') }}" required autofocus>
+            @if ($errors->has('field'))
+                <span class="error">
+                    {{ $errors->first('field') }}
+                </span>
+            @endif
+
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="reset" class="btn btn-secondary" onclick="toggleModal()">Cancel</button>
+            </div>
+
         </form>
-    @else
-        {{ $project->description }}
-    @endif
+    </div>
 
     <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
 
@@ -51,5 +93,10 @@
         @endforeach
 
     </div>
-
+    <script>
+        function toggleModal() {
+            document.querySelector('#new-project-modal-back').classList.toggle('hide')
+            document.querySelector('#new-project-modal').classList.toggle('hide')
+        }
+    </script>
 @endsection

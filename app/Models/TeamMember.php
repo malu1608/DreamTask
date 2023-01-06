@@ -9,6 +9,7 @@ class TeamMember extends Model
 {
   public $timestamps  = false;
   protected $primaryKey = ['id_user','id_team'];
+  public $incrementing = false;
   public $table = 'member_team';
 
   /**
