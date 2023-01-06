@@ -48,10 +48,17 @@ class TaskController extends Controller
       $tasksToDo = Task::where('task.id_team', $id)->where('task.task_status', 'To Do')->get();
       $tasksInProgress = Task::where('task.id_team', $id)->where('task.task_status', 'In Progress')->get();
       $tasksCompleted = Task::where('task.id_team', $id)->where('task.task_status', 'Completed')->get();
-
+      $team = Team::where('id_team', '=', $id)->first();
+      $project = Project::where('project.id_project', '=', $team->id_project)->first();
       //Team::find($id)->tasks()->orderBy('id_task')->get();
       //return $tasks;
-      return view('pages.cards', ['tasksToDo' => $tasksToDo, 'tasksInProgress' => $tasksInProgress, 'tasksCompleted' => $tasksCompleted, 'team_id' => $id]);
+
+      $teams = Team::join('project', 'project.id_project', 'team.id_project')
+                    ->where('team.id_team', '=', $id)
+                    ->get();
+
+
+      return view('pages.cards', ['tasksToDo' => $tasksToDo, 'tasksInProgress' => $tasksInProgress, 'tasksCompleted' => $tasksCompleted, 'team_id' => $id, 'project' => $project, 'teams' => $teams]);
     
     }
 

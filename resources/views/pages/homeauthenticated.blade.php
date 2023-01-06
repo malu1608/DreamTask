@@ -66,7 +66,7 @@
                 <div style="display: flex; flex-direction: row;">
 
                     <button type="submit" class="btn btn-primary">Create</button>
-                    <div class="btn btn-secondary" onclick="toggleModal()">Cancel</div>
+                    <button type="reset" class="btn btn-secondary" onclick="toggleModal()">Cancel</button>
                 </div>
                 
             </form>
