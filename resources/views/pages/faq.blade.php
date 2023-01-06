@@ -14,51 +14,51 @@
           <div class="faq-inner">
             <div class="faq-item">
               <h3>
-                What is an FAQ page ?
+                What is DreamTask and how does it work ?
                 <span class="faq-plus">&plus;</span>
               </h3>
               <div class="faq-body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                DreamTask is an app that allows the users to have control of all their workflow by controlling and planning their activities and by helping to build the right line-up in order to assemble the perfect project. The users can have their own teams and projects so that they can do their work by collaborating with their workmates.
               </div>
             </div>
             <hr class="linhafaq">
             <div class="faq-item">
               <h3>
-                What is an FAQ page ?
+                Who is DreamTask for ?
                 <span class="faq-plus">&plus;</span>
               </h3>
               <div class="faq-body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                You! And it’s not just for you. The DreamTask allow any type of user, whether corporate related like startups, consultants, small companies, large businesses, and many others, to have control of all their workflow.
               </div>
             </div>
             <hr>
             <div class="faq-item">
               <h3>
-                What is an FAQ page ?
+                Why should I use DreamTask ?
                 <span class="faq-plus">&plus;</span>
               </h3>
               <div class="faq-body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                DreamTask is an app that helps their users to build the right line-up in order to assemble the perfect project by letting them have control of all their workflow.
               </div>
             </div>
             <hr>
             <div class="faq-item">
               <h3>
-                What is an FAQ page ?
+                Is DreamTask free ?
                 <span class="faq-plus">&plus;</span>
               </h3>
               <div class="faq-body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                Everything that is possible to be done by a user is completely free.
               </div>
             </div>
             <hr>
             <div class="faq-item">
               <h3>
-                What is an FAQ page ?
+                How do I start using DreamTask ?
                 <span class="faq-plus">&plus;</span>
               </h3>
               <div class="faq-body">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                We saved the best for last. All you need is a DreamTask account and internet access.
               </div>
             </div>
           </div>

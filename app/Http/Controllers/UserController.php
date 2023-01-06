@@ -83,4 +83,11 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function deleteUserProfile(int $id_user){
+        $user = User::find($id_user);
+        $user->delete();
+        $user->save();
+        return redirect('/logout'); 
+    }
+
 }
