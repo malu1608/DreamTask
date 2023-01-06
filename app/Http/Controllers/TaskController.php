@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-
+use App\Models\Project;
 use App\Models\Team;
 use App\Models\Task;
+use App\Models\TeamMember;
 
 use Validator;
 
@@ -72,6 +73,12 @@ class TaskController extends Controller
           return redirect()->back();
       }
 
+      $is_able = TeamMember::where('id_user', '=', Auth::user()->id_user)
+                  ->where('id_team', '=', $request['id_team'])
+                  ->where('is_coordinator', true)
+                  ->exists();
+
+      if (!$is_able) return redirect()->back();
 
       $task = new Task();
 

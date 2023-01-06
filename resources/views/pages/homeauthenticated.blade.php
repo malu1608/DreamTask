@@ -17,7 +17,6 @@
                                    <div class="dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown">
                                    <div class="btn bg-body">
                                         <span class="h6">Status :</span>
-                                         In Progress
                                         <select id="statusoptions" name="status">
                                             <option value="inprogress">In Progress</option>
                                             <option value="todo">To Do</option>
@@ -33,14 +32,44 @@
                                </div>
                              
                                <div class="pl-3 border-left btn-new">
-                                    
-                                   <a href="#" class="btn btn-primary" data-target="#new-project-modal" data-toggle="modal">New Project</a>
+                                   <a href="#" class="btn btn-primary" onclick="toggleModal()">New Project</a>
                                </div>
                            </div>
                        </div>
                    </div>
                </div>
            </div>
+       </div>
+       <div id="new-project-modal-back" class="hide"></div>
+       <div id="new-project-modal" class="hide">
+            <form action="" method="post">
+                {{ csrf_field() }}
+
+                <h2>New Project</h2>
+
+                <label for="name">Project Name</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                @if ($errors->has('name'))
+                <span class="error">
+                    {{ $errors->first('name') }}
+                </span>
+                @endif
+
+                <label for="description">Description</label>
+                <input id="description" type="text" name="description" value="{{ old('description') }}" required>
+                @if ($errors->has('description'))
+                <span class="error">
+                    {{ $errors->first('description') }}
+                </span>
+                @endif
+
+                <div style="display: flex; flex-direction: row;">
+
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <div class="btn btn-secondary" onclick="toggleModal()">Cancel</div>
+                </div>
+                
+            </form>
        </div>
 
        <div id="grid" class="item-content animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
@@ -58,6 +87,7 @@
                                    <a href="#" class="iq-media">
                                        <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/05.jpg" alt="">
                                    </a>
+                                   <a href=""></a>
                                    <a href="#" class="iq-media">
                                        <img class="img-fluid avatar-40 rounded-circle" src="../assets/images/user/06.jpg" alt="">
                                    </a>
@@ -76,6 +106,13 @@
 
 
 <script>
+
+
+function toggleModal() {
+    document.querySelector('#new-project-modal-back').classList.toggle('hide')
+    document.querySelector('#new-project-modal').classList.toggle('hide')
+}
+
 $(document).ready(function(){
 
 fetch_customer_data();
