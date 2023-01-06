@@ -40,7 +40,7 @@ class ProjectsController extends Controller
 
         $project->save();
 
-        return redirect("/projects");
+        return redirect("/homeauthenticated");
     }
  /*
     public function showProjectsLists($id){

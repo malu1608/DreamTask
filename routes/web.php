@@ -77,7 +77,7 @@ Route::post('/profile/{id_user}/deleteProfile', [UserController::class,'deleteUs
 // Projects
 
 Route::get('create_project', 'ProjectsController@projectForm');
-Route::post('create_project', 'ProjectsController@createProject');
+Route::post('create_project', 'ProjectsController@create');
 
 //working
 Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
