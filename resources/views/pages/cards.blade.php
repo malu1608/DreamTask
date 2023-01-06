@@ -21,8 +21,6 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                
-      
                                         </div>
                                     </div>
                                 </div>
@@ -73,12 +71,9 @@
     <a href="#">Team Forum</a>
     </div>
   <section id="cards">
-  @each('partials.card', $cards, 'card')
-  <article class="card">
-    <form class="new_card">
-      <input class="newitembar" type="text" name="name" placeholder="new card">
-    </form>
-  </article>
+    <?php echo view('partials.card', ['tasks' => $tasksToDo, 'title' => 'To Do', 'team_id' => $team_id]); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksInProgress, 'title' => 'In Progress', 'team_id' => $team_id]); ?>
+    <?php echo view('partials.card', ['tasks' => $tasksCompleted, 'title' => 'Completed', 'team_id' => $team_id]); ?>
 </section>
 </div>
 </div> 

@@ -29,13 +29,18 @@ Route::get('/faq', function() {
 Route::get('/homeauthenticated', function() {
     return view('pages.homeauthenticated');
 });
+Route::get('/newproject', function() {
+    return view('pages.newproject');
+});
 // Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+
+
+Route::get('tasks', 'TaskController@showTasks');
+Route::get('cards/{id}', 'TaskController@show');
 
 // API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
+Route::put('api/cards', 'TaskController@create');
+Route::delete('api/cards/{card_id}', 'TaskController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
 Route::delete('api/item/{id}', 'ItemController@delete');
@@ -48,11 +53,11 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 //Admin
-Route::get('/admin/users', 'AdminController@showUsers')->name('show-admin-users');
+/*
 Route::get('/admin/users/{id}/remove', 'AdminController@removeUser');
 Route::get('/admin/users/{id}/edit', 'AdminController@editUser');
 Route::get('admin/profile/{id}', [AdminController::class,'showAdminProfile']);
-
+ */
 // Search Bar
 Route::get('live_search', 'LiveSearch@index');
 Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.action');
@@ -70,19 +75,30 @@ Route::post('/profile/{id_user}/deleteProfile', [UserController::class,'deleteUs
 
 
 // Projects
-Route::get('projects', 'ProjectsController@showProjects');
+
 Route::get('create_project', 'ProjectsController@projectForm');
 Route::post('create_project', 'ProjectsController@createProject');
 
-Route::get('project/{id}/tasks', [TasksController::class,'showTasks']);
+//working
+Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
+//Route::get('projects/team/{id}', 'ProjectsController@showProjectsLists')->where('id', '[0-9]+');
+Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '[0-9]+');
+//Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
+Route::get('/admin/users', 'UserController@showAdminUsers')->name('showAdminUsers');
+Route::get('editProfile','ProfileController@showEdit')->name('editProfile');
+Route::post('editProfile', 'ProfileController@editProfile');
+Route::get('user/{id}', 'UserController@show');
+
+
+
 Route::get('project/{id}/forum', [ProjectForumController::class,'show']);
 Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessage']);
 
 //Task
-Route::get('project/{id}/tasksCreate', [TasksController::class,'showTaskForm']);
-Route::post('tasksCreate', [TasksController::class,'create']);
-Route::get('/project/{id}/task/{task_id}', [TasksController::class,'showTask']);
-Route::post('/project/{id}/task/{task_id}/update', [TasksController::class,'updateTask']);
+Route::get('project/{id}/tasksCreate', [TaskController::class,'showTaskForm']);
+Route::post('tasksCreate', 'TaskController@create');
+Route::get('/project/{id}/task/{task_id}', [TaskController::class,'showTask']);
+Route::post('/project/{id}/task/{task_id}/update', [TaskController::class,'updateTask']);
 
 //Notification
 Route::post('notification/{id}/manager', [NotificationsController::class,'managerNotification']);

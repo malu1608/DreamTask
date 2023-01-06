@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Card extends Model
+class Task extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;

@@ -554,7 +554,13 @@ pre {
   width: fit-content;
   display: flex; }
 
-.
+  
+@media (min-width: 768px){
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
 
 .table-skyblue th,
 .table-skyblue td,

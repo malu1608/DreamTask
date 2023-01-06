@@ -16,15 +16,6 @@ use Illuminate\View\View;
 class AdminController extends Controller
 {
 
-    /**
-     * Display the specified resource for users
-     *
-     * @return Response
-     */
-    public function showUsers()
-    {
-        
-    }
 
     /**
      * Delete user by his id
@@ -34,7 +25,7 @@ class AdminController extends Controller
     public function deleteUser($id_user)
     {
         $user = User::findOrFail($id_user);
-        if (Amin::where('id_admin', '=', $id_user)->count() > 0) {
+        if (Admin::where('id_admin', '=', $id_user)->count() > 0) {
             return redirect()->back()->withErrors("You can't delete an admin account.");
         }
         $user->delete();
@@ -79,8 +70,14 @@ class AdminController extends Controller
     public function showAdminProfile(int $id_user)
     {
         Gate::authorize('admin',User::class);
-        $user = UsersController::getUser($id_user);
+        $user = UserController::getUser($id_user);
         return view('pages.admin.profile',['user' => $user]);
     }
 
 }
+
+
+
+
+
+

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Team extends Model
 {
   public $timestamps  = false;
-
+  protected $primaryKey = 'id_team';
+  protected $table = 'team';
 
   /**
    * For mass assignes.
@@ -24,7 +25,7 @@ class Team extends Model
 
   public function tasks()
   {
-    return $this->hasMany(Task::class);
+    return $this->hasMany(Task::class, 'id_task');
   }
 
   public function comments()

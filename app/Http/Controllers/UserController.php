@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     protected function validation(int $id_user)
     {
@@ -21,16 +21,25 @@ class UsersController extends Controller
         ];
     }
 
-    protected function passwordValidation()
+    
+    public function showAdminUsers()
     {
-        return  [
-            'password' => 'string|required|min:4|confirmed'
-        ];
+      if (!Auth::check()) return redirect('/login');
+      else if(!Auth::user()->is_admin) return redirect ('/');
+      //echo "oi";
+      $user = Auth::user();
+      //echo $user;
+      $users = User::get();
+      //echo $users;
+      return view('pages.showUsers', ['user' => $user, 'users' => $users]);
     }
 
-    static function getUserById(int $id_user)
+    public function show($id)
     {
-        return  User::find($id_user);
+      if (!Auth::check()) return redirect('/login');
+      $user = User::find($id);
+      $this->authorize('show', $user);
+      return view('pages.user', ['user' => $user]);
     }
 
     public function showUserProfile(int $id_user)
@@ -41,11 +50,10 @@ class UsersController extends Controller
         } else if (Auth::id() !== $id_user) {
             return redirect('/admin/profile/'.$id_user);
         }
-        $notifications = NotificationsController::getNotifications(Auth::id());
-
+        
         $user = self::getUserById($id_user);
 
-        return view('pages.profile', ['user' => $user, 'notifications' => $notifications]);
+        return view('pages.editProfile', ['user' => $user]);
     }
 
     public function showViewUserProfile(int $id_user)

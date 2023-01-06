@@ -54,4 +54,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\TeamMember');
       }
 
+    public function isAdmin() {
+      return $this->is_admin;
+    }    public function getName() {
+      
+      return $this->first_name . " " . $this->last_name;
+    }
 }

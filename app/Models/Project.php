@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
   public $timestamps  = false;
+  protected $primaryKey = 'id_project';
+  protected $table = 'project';
 
   /**
    * The attributes that are mass assignable.
@@ -14,7 +16,7 @@ class Project extends Model
    * @var array
    */
   protected $fillable = [
-      'name', 'description', 'company'
+      'name', 'description', 'company','project_status','creation_date','current_edit_date'
   ];
 
   public function notifications()
