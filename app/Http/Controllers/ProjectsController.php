@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Team;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+use Validator;
 
 class ProjectsController extends Controller
 {
@@ -19,6 +20,14 @@ class ProjectsController extends Controller
             'description' => 'required|string|max:255',
             'company' => 'string|max:64',
         ];
+    }
+
+    public function show($id) {
+        $teams = Team::where('team.id_project', '=', $id)->get();
+        $project = Project::where('id_project', '=', $id)->first();
+        $user = Auth::user();
+
+        return view('pages.teams', ['teams' => $teams, 'project' => $project, 'user' => $user]);
     }
 
 
@@ -40,7 +49,25 @@ class ProjectsController extends Controller
 
         $project->save();
 
-        return redirect("/projects");
+        return redirect("/homeauthenticated");
+    }
+
+    protected function delete(Request $request)
+    {
+        if (!Auth::user()->is_admin) return redirect()->back();
+        $validator = Validator::make($request->all(), [ 
+            'id_project' => ['required','integer'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back();
+        }
+
+        Team::where('id_project', $request['id_project'])->delete();
+
+        Project::find($request['id_project'])->delete();
+
+        return redirect("/homeauthenticated");
     }
  /*
     public function showProjectsLists($id){
@@ -72,6 +99,26 @@ class ProjectsController extends Controller
         //echo $projects;
         
       return view('pages.homeauthenticated', ['projects' => $projects]);
+    }
+
+    public function update($id, Request $request) {
+        if (!Auth::user()->is_admin) return redirect()->back();
+        $validator = Validator::make($request->all(), [ 
+            'description' => ['required','string'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back();
+        }
+
+        $proj = Project::find($id);
+
+        $proj->description = $request['description'];
+
+        $proj->save(); 
+
+        return redirect()->back();
+
     }
 
 }

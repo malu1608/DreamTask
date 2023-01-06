@@ -78,11 +78,19 @@ Route::post('/profile/{id_user}/deleteProfile', [UserController::class,'deleteUs
 // Projects
 
 Route::get('create_project', 'ProjectsController@projectForm');
-Route::post('create_project', 'ProjectsController@createProject');
+Route::post('create_project', 'ProjectsController@create');
+Route::post('delete_project', 'ProjectsController@delete');
 
 //working
 Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
 //Route::get('projects/team/{id}', 'ProjectsController@showProjectsLists')->where('id', '[0-9]+');
+Route::get('project/{id}', 'ProjectsController@show')->where('id', '[0-9]+');
+Route::post('project/{id}', 'TeamMemberController@removeMember');
+Route::post('project/{id}/info', 'ProjectsController@update');
+Route::post('project/{id}/create_team', 'TeamMemberController@create')->where('id', '[0-9]+');
+Route::post('project/{id}/delete_team', 'TeamMemberController@delete')->where('id', '[0-9]+');
+Route::post('project/{id}/add_member', 'TeamMemberController@addMember')->where('id', '[0-9]+');
+
 Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '[0-9]+');
 //Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
 Route::get('/admin/users', 'UserController@showAdminUsers')->name('showAdminUsers');
@@ -99,7 +107,7 @@ Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessa
 Route::get('project/{id}/tasksCreate', [TaskController::class,'showTaskForm']);
 Route::post('tasksCreate', 'TaskController@create');
 Route::get('/project/{id}/task/{task_id}', [TaskController::class,'showTask']);
-Route::post('/project/{id}/task/{task_id}/update', [TaskController::class,'updateTask']);
+Route::post('/task/{task_id}', 'TaskController@updateTask')->where('task_id', '[0-9]+');
 
 //Notification
 Route::post('notification/{id}/manager', [NotificationsController::class,'managerNotification']);

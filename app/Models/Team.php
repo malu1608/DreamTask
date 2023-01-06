@@ -35,7 +35,11 @@ class Team extends Model
 
   public function members()
   {
-    return $this->belongsToMany(User::class);
+    return User::join('member_team', 'member_team.id_user', 'users.id_user')
+    ->where('member_team.id_team', '=', $this->id_team)
+    ->get();
+    // return $this->belongsToMany(User::class);
+
   }
 
 }

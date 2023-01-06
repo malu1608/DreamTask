@@ -273,6 +273,7 @@ fieldset {
   padding: 0;
   margin: 0;
   border: 0; }
+ 
 
 legend {
   display: block;
@@ -9926,6 +9927,56 @@ body.tab-horizontal .iq-footer {
 
 .iq-card-body.banner-box {
   padding-bottom: 0; }
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#new-project-modal-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh; 
+  width: 100%; 
+  background-color: black; 
+  opacity: 0.2;
+  z-index: 100; 
+  display: block;
+}
+
+#new-project-modal-back.hide {
+  display: none;
+}
+
+#new-project-modal {
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  height: 100vh;
+  width: 100%; 
+  z-index: 101; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+#new-project-modal.hide{
+  display: none;
+}
+
+#new-project-modal > form {
+  background-color: white; 
+  padding: 2rem; 
+  opacity: 1; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
+  border-radius: 16px;
+}
+
+#new-project-modal > form > h2 {
+  margin-top: 0;
+}
 
 @media (min-width: 1300px) {
   body.sidebar-main .iq-footer {

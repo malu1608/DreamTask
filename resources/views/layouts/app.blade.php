@@ -40,6 +40,9 @@
         @if (Auth::check())
         <h1><a href="{{ url('/homeauthenticated') }}"> DreamTask</a></h1>
         <h1>
+          <a class="material-symbols-outlined" href="/teams" >
+            diversity_3
+          </a>
           <a id=notificationsDropdownAnchor>
 
           <span class="material-symbols-outlined bell" onclick="viewNotifications()">
