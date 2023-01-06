@@ -21,6 +21,10 @@ class ProjectsController extends Controller
         ];
     }
 
+    public function show() {
+        return view('pages.teams');
+    }
+
 
     public function projectForm()
     {

@@ -4,6 +4,6 @@
 
 @section('content')
 
-
+    <h1>Your teams</h1>
 
 @endsection

@@ -87,7 +87,9 @@
                     <div class="col-lg-4 col-md-6 project_status_{{ $project->project_status }}">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">
-                                <h5 class="mb-1">{{ $project->name }}</h5>
+                                <a href="project/{{ $project->id_project }}">
+                                    <h5 class="mb-1">{{ $project->name }}</h5>
+                                </a>
 
                                 {{ $project->description }}
                                 <br>{{ $project->company }}
