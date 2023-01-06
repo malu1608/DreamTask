@@ -21,8 +21,9 @@ class ProjectsController extends Controller
         ];
     }
 
-    public function show() {
-        return view('pages.teams');
+    public function show($id) {
+        $teams = Team::where('team.id_project', '=', $id)->get();
+        return view('pages.teams', ['teams' => $teams]);
     }
 
 
