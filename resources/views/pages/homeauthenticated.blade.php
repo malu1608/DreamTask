@@ -13,6 +13,19 @@
                        <div class="d-flex flex-wrap align-items-center justify-content-between breadcrumb-content">
                            <h5>Your Projects</h5>
                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                           <div class="searchcontainer">
+                                    <div class="wrap">
+                                        
+                                    <input type="text" name="search" id="search" class="form-control" placeholder="Search projects..." />                            
+                                        <div class="table-responsive" >
+                                            <table class="table table-striped ">
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                                <div class="dropdown status-dropdown mr-3">
                                    <div class="dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown">
                                    <div class="btn bg-body">
@@ -83,7 +96,7 @@ fetch_customer_data();
 function fetch_customer_data(query = '')
 {
 $.ajax({
-url:"{{ route('live_search.action_task') }}",
+url:"{{ route('live_search.action_proj') }}",
 method:'GET',
 data:{query:query},
 dataType:'json',
