@@ -76,10 +76,14 @@ Route::post('create_project', 'ProjectsController@createProject');
 
 //working
 Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
-//Route::get('projects/team/{id}', 'ProjectsController@showProjectsLists')->where('id', '[0-9]+');;
+//Route::get('projects/team/{id}', 'ProjectsController@showProjectsLists')->where('id', '[0-9]+');
 Route::get('project/team/{id}/tasks', 'TaskController@showTasks')->where('id', '[0-9]+');
-Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
+//Route::post('project/team/{id}/tasks/deltask', 'TaskController@deleteTask');
 Route::get('/admin/users', 'UserController@showAdminUsers')->name('showAdminUsers');
+Route::get('editProfile','ProfileController@showEdit')->name('editProfile');
+Route::post('editProfile', 'ProfileController@editProfile');
+
+
 
 Route::get('project/{id}/forum', [ProjectForumController::class,'show']);
 Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessage']);

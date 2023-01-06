@@ -57,7 +57,8 @@
           </div>
         </a>
         </h1>
-        <span>{{ Auth::user()->name }}</span>  <a class="button" href="{{ url('/logout') }}"> Logout </a> 
+        <a>{{ Auth::user()->getName() }}</a>  
+        <a class="button" href="{{ url('/logout') }}"> Logout </a> 
 
       @endif
       @if (!Auth::check()) 

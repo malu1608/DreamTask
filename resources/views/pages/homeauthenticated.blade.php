@@ -15,12 +15,20 @@
                            <div class="d-flex flex-wrap align-items-center justify-content-between">
                                <div class="dropdown status-dropdown mr-3">
                                    <div class="dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown">
-                                   <div class="btn bg-body"><span class="h6">Status :</span> In Progress<i class="ri-arrow-down-s-line ml-2 mr-0"></i></div>
+                                   <div class="btn bg-body">
+                                        <span class="h6">Status :</span>
+                                         In Progress
+                                        <select id="statusoptions" name="status">
+                                            <option value="inprogress">In Progress</option>
+                                            <option value="todo">To Do</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                        <i class="ri-arrow-down-s-line ml-2 mr-0"></i>
+                                    </div>
                                    </div>
                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton03">
-                                       <a class="dropdown-item" href="#"><i class="ri-mic-line mr-2"></i>In Progress</a>
-                                       <a class="dropdown-item" href="#"><i class="ri-attachment-line mr-2"></i>Priority</a>
-                                       <a class="dropdown-item" href="#"><i class="ri-file-copy-line mr-2"></i>Category</a> 
+                                       <a class="dropdown-item" href="{{route('editProfile')}}"><i class="ri-mic-line mr-2"></i>In Progress</a>
+                                       
                                    </div>
                                </div>
                              
@@ -38,14 +46,13 @@
        <div id="grid" class="item-content animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
         @foreach ($projects as $project)
            
-               <div class="col-lg-4 col-md-6">
+               <div class="col-lg-4 col-md-6 project_status_{{$project->project_status}}">
                    <div class="card card-block card-stretch card-height">
                        <div class="card-body">
                             <h5 class="mb-1">{{$project->name}}</h5>
                                 
                                 {{$project->description}}
                                 <br>{{$project->company}}
-                                                
                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
                                <div class="iq-media-group">
                                    <a href="#" class="iq-media">
@@ -93,6 +100,52 @@ var query = $(this).val();
 fetch_customer_data(query);
 });
 });
+
+let statusOption = document.querySelector('#statusoptions');
+
+if (statusOption != null) {
+    statusOption.addEventListener('change', (ev) => {
+        console.log(statusOption.selectedIndex)
+        switch (statusOption.selectedIndex) {
+            case 0:
+                document.querySelectorAll('.project_status_In').forEach(element => {
+                    element.style.display = 'block'
+                });
+                document.querySelectorAll('.project_status_To').forEach(element => {
+                    element.style.display = 'none'
+                });
+                document.querySelectorAll('.project_status_Completed').forEach(element => {
+                    element.style.display = 'none'
+                });
+                break;
+            case 1:
+                document.querySelectorAll('.project_status_In').forEach(element => {
+                    element.style.display = 'none'
+                });
+                document.querySelectorAll('.project_status_To').forEach(element => {
+                    element.style.display = 'block'
+                });
+                document.querySelectorAll('.project_status_Completed').forEach(element => {
+                    element.style.display = 'none'
+                });
+                break;
+            case 2:
+                document.querySelectorAll('.project_status_In').forEach(element => {
+                    element.style.display = 'none'
+                });
+                document.querySelectorAll('.project_status_To').forEach(element => {
+                    element.style.display = 'none'
+                });
+                document.querySelectorAll('.project_status_Completed').forEach(element => {
+                    element.style.display = 'block'
+                });
+                break;
+        
+            default:
+                break;
+        }
+    })
+}
 </script>
 @endsection
 

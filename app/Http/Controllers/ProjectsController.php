@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Gate;
 
 class ProjectsController extends Controller
 {
-
-
     protected function validation()
     {
         return  [

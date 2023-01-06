@@ -47,7 +47,7 @@ class UserController extends Controller
 
         $user = self::getUserById($id_user);
 
-        return view('pages.profile', ['user' => $user, 'notifications' => $notifications]);
+        return view('pages.editProfile', ['user' => $user]);
     }
 
     public function showViewUserProfile(int $id_user)
