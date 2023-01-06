@@ -299,11 +299,11 @@ INSERT INTO Team_Member (id_user, position) VALUES (5, 'Software architect');
 INSERT INTO Team_Member (id_user, position) VALUES (7, 'Product Manager');
 
 /*Project*/
-INSERT INTO Project (name, description, company) VALUES ('Proj1', 'este é o project 1', 'company X');
-INSERT INTO Project (name, description, company) VALUES ('Proj2', 'este é o project 2', 'company X');
-INSERT INTO Project (name, description, company) VALUES ('Proj3', 'este é o project 3', 'company Y');
-INSERT INTO Project (name, description, company) VALUES ('Proj4', 'este é o project 4', 'company Z');
-INSERT INTO Project (name, description, company) VALUES ('Proj5', 'este é o project 5', 'company Y');
+INSERT INTO Project (name, description, company) VALUES ('PFL', 'Um jogo de xadrez', 'company X');
+INSERT INTO Project (name, description, company) VALUES ('LBAW', 'Um site para comprar produtos online', 'company X');
+INSERT INTO Project (name, description, company) VALUES ('SO', 'Codigo para trabalho de grupo', 'company Y');
+INSERT INTO Project (name, description, company) VALUES ('IPC', 'Codigo para comunicar entre computadores', 'company Z');
+INSERT INTO Project (name, description, company) VALUES ('LDTS', 'Um jogo da Snake', 'company Y');
 
 /*Member_Project*/
 INSERT INTO Member_Project (id_project, id_user) VALUES (1,4);
@@ -318,12 +318,12 @@ INSERT INTO Member_Project (id_project, id_user) VALUES (4,5);
 INSERT INTO Member_Project (id_project, id_user) VALUES (4,2);
 
 /*Team*/
-INSERT INTO Team (name, field, id_project) VALUES ('team1', 'field da team 1', 1);
-INSERT INTO Team (name, field, id_project) VALUES ('team2', 'field da team 2', 1);
-INSERT INTO Team (name, field, id_project) VALUES ('team3', 'field da team 3', 2);
-INSERT INTO Team (name, field, id_project) VALUES ('team4', 'field da team 4', 3);
-INSERT INTO Team (name, field, id_project) VALUES ('team5', 'field da team 5', 3);
-INSERT INTO Team (name, field, id_project) VALUES ('team6', 'field da team 6', 4);
+INSERT INTO Team (name, field, id_project) VALUES ('MTeam', 'Equipa principal do projeto PFL', 1);
+INSERT INTO Team (name, field, id_project) VALUES ('STeam', 'Equipa secundaria do projeto PFL', 1);
+INSERT INTO Team (name, field, id_project) VALUES ('UTeam', 'Unica equipa do projeto LBAW', 2);
+INSERT INTO Team (name, field, id_project) VALUES ('EX1', 'Equipa que trata do exercicio 1 do projeto SO', 3);
+INSERT INTO Team (name, field, id_project) VALUES ('EX2', 'Equipa que trata do exercicio 2 do projeto SO', 3);
+INSERT INTO Team (name, field, id_project) VALUES ('Comms', 'Equipa do projeto de IPC', 4);
 
 /*Member_Team*/
 INSERT INTO Member_Team (id_user, id_team, is_coordinator) VALUES (2, 1, True);
@@ -338,16 +338,16 @@ INSERT INTO Member_Team (id_user, id_team, is_coordinator) VALUES (5, 6, False);
 INSERT INTO Member_Team (id_user, id_team, is_coordinator) VALUES (2, 6, True);
 
 /*Task*/
-INSERT INTO Task (title, description, id_team) VALUES ('task1', 'esta é a task 1', 1);
-INSERT INTO Task (title, description, id_team) VALUES ('task2', 'esta é a task 2', 1);
-INSERT INTO Task (title, description, id_team) VALUES ('task3', 'esta é a task 3', 2);
-INSERT INTO Task (title, description, id_team) VALUES ('task4', 'esta é a task 4', 3);
-INSERT INTO Task (title, description, id_team) VALUES ('task5', 'esta é a task 5', 4);
-INSERT INTO Task (title, description, id_team) VALUES ('task6', 'esta é a task 6', 4);
-INSERT INTO Task (title, description, id_team) VALUES ('task7', 'esta é a task 7', 4);
-INSERT INTO Task (title, description, id_team) VALUES ('task8', 'esta é a task 8', 5);
-INSERT INTO Task (title, description, id_team) VALUES ('task9', 'esta é a task 9', 5);
-INSERT INTO Task (title, description, id_team) VALUES ('task10', 'esta é a task 10', 6);
+INSERT INTO Task (title, description, id_team) VALUES ('FazerTabuleiro', 'Fazer tabuleiro de jogo', 1);
+INSERT INTO Task (title, description, id_team) VALUES ('FazerPecas', 'Fazer pecas do jogo', 1);
+INSERT INTO Task (title, description, id_team) VALUES ('Movimento', 'Fazer pecas mexer', 2);
+INSERT INTO Task (title, description, id_team) VALUES ('Produtos', 'Adicionar produtos que se pode comprar', 3);
+INSERT INTO Task (title, description, id_team) VALUES ('Ideia', 'Formalizar a ideia do exercicio', 4);
+INSERT INTO Task (title, description, id_team) VALUES ('Desenvolver', 'Desenvolver o trabalho', 4);
+INSERT INTO Task (title, description, id_team) VALUES ('Organizar', 'Colocar codigo organizado', 4);
+INSERT INTO Task (title, description, id_team) VALUES ('FazerT', 'Desenvolver o codigo do trabalho', 5);
+INSERT INTO Task (title, description, id_team) VALUES ('Legivel', 'Colocar codigo legivel', 5);
+INSERT INTO Task (title, description, id_team) VALUES ('Comunicacao', 'Unica tarefa deste trabalho', 6);
 
 /*Task_Member*/
 INSERT INTO Task_Member (id_user, id_task) VALUES (2, 1);
@@ -367,11 +367,11 @@ INSERT INTO Task_Member (id_user, id_task) VALUES (5, 10);
 INSERT INTO Task_Member (id_user, id_task) VALUES (2, 10);
 
 /*Comment*/
-INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 1', 2, 1, 1);
-INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 2', 2, 1, 1);
-INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 3', 4, 3, 2);
-INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 4', 3, 3, 2);
-INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('comentario 5', 3, 8, 5);
+INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('Gostei da ideia', 2, 1, 1);
+INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('Pensaram bem', 2, 1, 1);
+INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('Precisamos de ajuda nesta fase', 4, 3, 2);
+INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('Copiei de outro codigo', 3, 3, 2);
+INSERT INTO Comment (content, id_user, id_task, id_team) VALUES ('Nao gostei de como foi feito', 3, 8, 5);
 
 /*Notification*/
 INSERT INTO Notification (content, type, id_task) VALUES ('notification 1', 'Task', 1);
@@ -394,3 +394,4 @@ INSERT INTO Member_Notification (id_user, id_notification) VALUES (3, 4);
 INSERT INTO Member_Notification (id_user, id_notification) VALUES (4, 5);
 INSERT INTO Member_Notification (id_user, id_notification) VALUES (2, 5);
 INSERT INTO Member_Notification (id_user, id_notification) VALUES (3, 5);
+

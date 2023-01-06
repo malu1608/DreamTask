@@ -234,4 +234,66 @@ class LiveSearch extends Controller
             echo json_encode($data);
         }
     }
+
+    function action_team (request $request)
+    {
+        if($request -> ajax()) {
+            $output = '';
+            $query = $request -> get ('query');
+            $total_row = 0;
+
+            if($query != '') 
+            {
+
+                $data_team = DB::table('team')
+                        -> where ('name','like','%' . $query.'%')
+                        -> orderby ('name','asc')
+                        -> get ();
+
+                $total_row = $data_team -> count();
+            }
+            
+            
+            if ($total_row > 0)
+            {
+                if ($data_team -> count() >0){
+                    $aux=0;
+                    $output .= '<h5>Team:</h5>';
+                    foreach ($data_team as $row)
+                    {
+                        if($aux < 3){
+                            $output .= '
+                            <tr>
+                                <td> '.$row->name.' </td>
+                                <td> '.$row->field.' </td>
+                            </tr>
+                            ';
+                        }
+                        $aux++;
+                    }
+                }
+
+
+                   
+            }
+            else
+            {
+                if($query != '')
+                {
+                    $output = '
+                    <tr>
+                        <td align="center" colspan="5"> No Data Found</td>
+                    </tr>
+                    ';
+                }
+            }
+
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row
+            );
+
+            echo json_encode($data);
+        }
+    }
 }
