@@ -63,9 +63,21 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card card-block card-stretch card-height">
                     <div class="card-body">
-                        <a href="/project/team/{{ $team->id_team }}/tasks">
-                            <h3>{{ $team->name }}</h3>
-                        </a>
+                        <form action="/project/{{ $project->id_project }}/delete_team" method="post"
+                            style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; align-items: center;">
+                            @csrf
+                            <a href="/project/team/{{ $team->id_team }}/tasks">
+                                <h3 style="margin: 0;">{{ $team->name }}</h3>
+                            </a>
+                            @if (Auth::user()->isCoordinator($team->id_team) || Auth::user()->is_admin)
+                                <input type="number" name="id_team" value="{{ $team->id_team }}" style="display:none;">
+                                <button type="submit" style="background-color: darkred;">
+                                    <span class="material-symbols-outlined">
+                                        close
+                                    </span>
+                                </button>
+                            @endif
+                        </form>
                         <div>{{ count($team->members()) }} members</div>
                         <ul>
                             @foreach ($team->members() as $member)
@@ -87,6 +99,26 @@
                                 </li>
                             @endforeach
                         </ul>
+                        @if (Auth::user()->isCoordinator($team->id_team) || Auth::user()->is_admin)
+                            <form action="/project/{{ $project->id_project }}/add_member" method="post"
+                                style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; align-items: flex-end;">
+                                @csrf
+                                <div style="display: flex; flex-direction: column;">
+                                    <div style="display: flex; flex-direction: row; gap: 10%; align-items: center">
+                                        <label for="coordinator">Team Coordinator</label>
+                                        <input type="checkbox" name="coordinator">
+                                    </div>
+                                    <input id="username" type="text" name="username" placeholder="username" required autofocus>
+                                    @if ($errors->has('username'))
+                                        <span class="error">
+                                            {{ $errors->first('username') }}
+                                        </span>
+                                    @endif
+                                </div>
+                                <input type="number" name="id_team" value="{{ $team->id_team }}" style="display:none;">
+                                <button type="submit">New Team Member</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -44,12 +44,14 @@
             </div>
             <div id="new-project-modal-back" class="hide"></div>
             <div id="new-project-modal" class="hide">
+
                 <form action="/create_project" method="post">
                     {{ csrf_field() }}
 
                     <h2>New Project</h2>
 
                     <label for="name">Project Name</label>
+
                     <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
                     @if ($errors->has('name'))
                         <span class="error">
@@ -87,24 +89,26 @@
                     <div class="col-lg-4 col-md-6 project_status_{{ $project->project_status }}">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body">
-                                <a href="project/{{ $project->id_project }}">
-                                    <h5 class="mb-1">{{ $project->name }}</h5>
-                                </a>
-
+                                <form action="delete_project" method="post"
+                                    style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; align-items: center;">
+                                    @csrf
+                                    <a href="project/{{ $project->id_project }}" style="margin: 0;">
+                                        <h5 class="mb-1">{{ $project->name }}</h5>
+                                    </a>
+                                    @if (Auth::user()->is_admin)
+                                        <input type="number" name="id_project" value="{{ $project->id_project }}"
+                                            style="display:none;">
+                                        <button type="submit" style="background-color: darkred;">
+                                            <span class="material-symbols-outlined">
+                                                close
+                                            </span>
+                                        </button>
+                                    @endif
+                                </form>
                                 {{ $project->description }}
                                 <br>{{ $project->company }}
                                 <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                    <div class="iq-media-group">
-                                        <a href="#" class="iq-media">
-                                            <img class="img-fluid avatar-40 rounded-circle"
-                                                src="../assets/images/user/05.jpg" alt="">
-                                        </a>
-                                        <a href=""></a>
-                                        <a href="#" class="iq-media">
-                                            <img class="img-fluid avatar-40 rounded-circle"
-                                                src="../assets/images/user/06.jpg" alt="">
-                                        </a>
-                                    </div>
+
                                     <a class="btn btn-white text-primary link-shadow">{{ $project->current_edit_date }}</a>
                                 </div>
                             </div>

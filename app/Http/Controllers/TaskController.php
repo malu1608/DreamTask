@@ -100,17 +100,19 @@ class TaskController extends Controller
       return redirect()->back();
     }
 
-    public function updateTask(int $id, Request $request)
+    public function updateTask(int $task_id, Request $request)
     {
-      Gate::authorize('update',Task::find($id));
+      // Gate::authorize('update',Task::find($task_id));
       
       if($request->input('action') == 'deltask'){
-        $task = Task::find($id);
+        $task = Task::find($task_id);
         $task->delete();
       }
+
+      return redirect()->back();
       
       
-      return response()->json(['success'=>'User Deleted Successfully!']);
+      // return response()->json(['success'=>'User Deleted Successfully!']);
     }
    
 }

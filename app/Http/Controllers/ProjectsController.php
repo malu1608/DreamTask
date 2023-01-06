@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Team;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -25,8 +25,9 @@ class ProjectsController extends Controller
     public function show($id) {
         $teams = Team::where('team.id_project', '=', $id)->get();
         $project = Project::where('id_project', '=', $id)->first();
+        $user = Auth::user();
 
-        return view('pages.teams', ['teams' => $teams, 'project' => $project]);
+        return view('pages.teams', ['teams' => $teams, 'project' => $project, 'user' => $user]);
     }
 
 
@@ -47,6 +48,24 @@ class ProjectsController extends Controller
         $project->company = $request->company;
 
         $project->save();
+
+        return redirect("/homeauthenticated");
+    }
+
+    protected function delete(Request $request)
+    {
+        if (!Auth::user()->is_admin) return redirect()->back();
+        $validator = Validator::make($request->all(), [ 
+            'id_project' => ['required','integer'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back();
+        }
+
+        Team::where('id_project', $request['id_project'])->delete();
+
+        Project::find($request['id_project'])->delete();
 
         return redirect("/homeauthenticated");
     }
