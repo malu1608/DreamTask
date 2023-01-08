@@ -52,12 +52,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-//Admin
-/*
-Route::get('/admin/users/{id}/remove', 'AdminController@removeUser');
-Route::get('/admin/users/{id}/edit', 'AdminController@editUser');
-Route::get('admin/profile/{id}', [AdminController::class,'showAdminProfile']);
- */
 // Search Bar
 Route::get('live_search', 'LiveSearch@index');
 Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.action');
@@ -73,12 +67,6 @@ Route::get('/profile/{id_user}/view', [UserController::class,'showViewUserProfil
 Route::post('/profile/{id_user}/updateUser', [UserController::class,'updateUserById']);
 Route::post('/profile/{id_user}/deleteProfile', [UserController::class,'deleteUserProfile']);
 
-
-// Projects
-
-Route::get('create_project', 'ProjectsController@projectForm');
-Route::post('create_project', 'ProjectsController@create');
-Route::post('delete_project', 'ProjectsController@delete');
 
 //working
 Route::get('/homeauthenticated', 'ProjectsController@showAllProjects');
@@ -98,18 +86,3 @@ Route::post('editProfile', 'ProfileController@editProfile');
 Route::get('user/{id}', 'UserController@show');
 
 
-
-Route::get('project/{id}/forum', [ProjectForumController::class,'show']);
-Route::post('project/{id}/forum/send', [ProjectForumController::class,'sendMessage']);
-
-//Task
-Route::get('project/{id}/tasksCreate', [TaskController::class,'showTaskForm']);
-Route::post('tasksCreate', 'TaskController@create');
-Route::get('/project/{id}/task/{task_id}', [TaskController::class,'showTask']);
-Route::post('/task/{task_id}', 'TaskController@updateTask')->where('task_id', '[0-9]+');
-
-//Notification
-Route::post('notification/{id}/manager', [NotificationsController::class,'managerNotification']);
-Route::post('notification/{id}/taskClosed', [NotificationsController::class,'taskClosedNotification']);
-Route::post('notification/{id}/assign', [NotificationsController::class,'assignNotification']);
-Route::post('notifications/{id}/clear', [NotificationsController::class,'clearNotifications']);
