@@ -57,6 +57,7 @@ Route::get('live_search', 'LiveSearch@index');
 Route::get('live_search/action', 'LiveSearch@action') -> name('live_search.action');
 Route::get('live_search/action_proj', 'LiveSearch@action_proj') -> name('live_search.action_proj');
 Route::get('live_search/action_task', 'LiveSearch@action_task') -> name('live_search.action_task');
+Route::get('live_search/action_team', 'LiveSearch@action_team') -> name('live_search.action_team');
 
 // User information
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
