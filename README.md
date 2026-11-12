@@ -12,12 +12,6 @@ A **Trello-style** web application for teams to organise work in workspaces, pro
 ## Stack
 Laravel (PHP) · PostgreSQL · Blade templates · Docker
 
-## My contribution
-Pages for the authenticated home, teams and task cards; the projects and tasks controllers; routes; and part of the OpenAPI specification and seed data.
-
-## Team
-Group of 4 (LBAW 2022/23, group 2242)
-
 ## Run
 ```bash
 docker compose up
