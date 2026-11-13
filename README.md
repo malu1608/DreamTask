@@ -1,32 +1,31 @@
 # DreamTask — Project Management Platform
 
-A **Trello-style** web application for teams to organise work in workspaces, projects and task lists.
+A **Trello-style** web application where teams organise their work in workspaces, projects and task boards.
 
 ![DreamTask demo](docs/dreamtask-demo.gif)
 
-▶️ [Watch the full demo (4 min)](docs/dreamtask-demo.mp4)
+▶️ **[Watch the full demo (4 min)](docs/dreamtask-demo.mp4)**
 
-| Landing page | Projects | Task board |
+## From wireframe to product
+
+| | Wireframe | Final app |
 |---|---|---|
-| ![landing](docs/landing.jpg) | ![projects](docs/projects.jpg) | ![task board](docs/task-board.jpg) |
+| **Landing page** | ![wireframe](docs/design/wireframe-landing.png) | ![landing](docs/landing.jpg) |
+| **Task board** | ![wireframe](docs/design/wireframe-taskboard.png) | ![task board](docs/task-board.jpg) |
+
+More wireframes: [home](docs/design/wireframe-home.png) · [login and sign-up](docs/design/wireframe-login.png) · Projects page: ![projects](docs/projects.jpg)
 
 ## Features
 - Authentication and four user roles with different permissions
-- Workspaces, teams, projects and task cards
+- Workspaces, teams, projects and task cards (To Do / In Progress / Completed)
 - Live search and notifications
 - REST API documented in **OpenAPI**
 - Indexes and query tuning for task and project searches
 
 ## Design
-| Sitemap | Wireframe |
-|---|---|
-| ![sitemap](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/SITEMAP2.drawio.png) | ![wireframe](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/wireframe1.png) |
-
-| Actors | Data model (UML) |
-|---|---|
-| ![actors](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/actors.png) | ![uml](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/uml.png) |
-
-More wireframes: [2](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/wireframe2.png) · [3](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/wireframe3.png) · [4](https://raw.githubusercontent.com/Alberto-Serra/LBAW-images/main/wireframe4.PNG)
+| Sitemap | Actors | Data model (UML) |
+|---|---|---|
+| ![sitemap](docs/design/sitemap.png) | ![actors](docs/design/actors.png) | ![uml](docs/design/uml.png) |
 
 ## Stack
 Laravel (PHP) · PostgreSQL · Blade templates · Docker
@@ -37,4 +36,4 @@ docker compose up
 ```
 
 ---
-Academic project developed at FEUP (Faculty of Engineering, University of Porto) as part of the Informatics and Computing Engineering programme.
+Academic project developed at FEUP (Faculty of Engineering, University of Porto), Databases and Web Applications Laboratory (LBAW) 2022/23.
